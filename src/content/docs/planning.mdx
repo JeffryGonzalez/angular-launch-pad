@@ -4,127 +4,124 @@ description: Project planning, feedback, and development notes for the Angular 1
 ---
 
 import Screenshot from '../../components/Screenshot.astro';
+import Todo from '../../components/Todo.astro';
+import GitHubIssues from '../../components/GitHubIssues.astro';
+
+
+:::tip
+I am using the name "company" here until we make this authenticated in lieu of using the real company name. 
+::: 
+
 
 ## Project Status
+
+This is a **review** version of this site. 
+
+When it goes *live*, it will require authentication to access. I'm working with the security team to make it so that only company employees can access it.
+
+<Todo who="Hypertheory" >
+Integrate this into the existing company authentication system before launch.
+</Todo>
+
+<Todo who="Hypertheory">
+Move this site to the *.hypertheory-labs.com domain when ready for production.
+</Todo>
+
+
+As discussed below, each section will have review questions and/or exercises added before the final version is complete. Their answers to the review questions will be submitted directly to Hypertheory for evaluation, however the students will be given opportunities to
+correct their errors. 
+
+For the practice exercises, they will submit a link to either their Github repository or a link to a Stackblitz project that contains their solution, and it will contain instructions on how to do that.
+
+<Todo who="Hypertheory" >
+I need to verify this will be acceptable with the company since they may have restrictions on using third-party services. There is a "plan b", if needed.
+</Todo> 
+
+## The Content 
+
+The content is broken into three main sections:
+
+1. The Development Environment
+2. The Web Platform
+3. Welcome to Angular (coming soon)
+
+
+Each topic within a section will have a brief video at the top of the topic that introduces the topic and explains why it is important for Angular development. Some topics will have short "silent" demonstration videos of common tasks (e.g. setting up Git, using browser devtools, etc.
+) that will work as a reference for the students during the training.
+
+
+### Section 1: The Development Environment
+
+The first section (*The Development Environment*) is designed to help developers that are coming from other development environments (like Visual Studio) get comfortable with the tools and workflows used in Angular development. For some developers, entering a class where they've 
+never seen Visual Studio Code, Git, Node.js, and the command line can be intimidating. This section aims to level-set everyone so they can focus on learning Angular without struggling with the tools.
+
+<Todo who="Company">
+If there are custom instructions on how they should request access to company resources/tools, add those here, or include them in the welcome materials.
+</Todo>
+
+The emphasis here will be brief familiarity. They don't need to become experts in Git or Node.js, but they do need to understand the basic workflows and concepts so they can follow along with the Angular training without getting stuck on tooling issues.
+
+It would be helpful if the student took the internal Git training before starting this course, if they are completely new to Git. We don't do "advanced" things with Git in class, but for some, it is a stumbling block and having that background will help.
+
+I think the "Evaluation" of this section will be a few questions, but also them affirming that they have set up their development environment correctly.
+
+<Todo who="Hypertheory">
+Hypertheory will check with the company to see if there are any specific requirements for this section.
+</Todo>
+
+### Section 2: The Web Platform 
+
+This is the "meat" of the pre-work. Understanding how the web works is crucial for Angular development. This section covers the foundational technologies of the web, including HTML, CSS, JavaScript, and TypeScript.
+
+Each topic will have review questions and/or practice exercises to help reinforce the concepts. The goal is for the student to have a solid understanding of how web applications work before diving into Angular.
+
+I'm adding "additional resources" for those that want to go deeper, or for those that need more background. The goal is to give them just enough to be successful in the Angular training without overwhelming them.
+
+### Section 3: Welcome to Angular (Coming Soon)
+
+I'm going to add a brief introduction to Angular itself as the final section of the pre-work. This will give them a taste of what Angular is and how it fits into the web platform.
+
+This section will divulge some of the reasons for emphasizing certain topics in the earlier sections. 
+
+It will also have links to the "official" Angular documentation for further reading, along with links to the Angular tutorials, and other resources to help them get started.
+
+I'm thinking this section will not have an assessment, as it is more of a "welcome" and orientation to Angular itself for those that really want to get a head start.
+
+
+
+
+
+
 
 This site is being developed as a **proof of concept** for Angular 100 Pre-Work training materials.
 
 ### Current State
-- ✅ 12 topic files complete with comprehensive content
-- ✅ Starlight documentation site fully configured
+
 - ✅ Video recording guides complete (~2.75-3.25 hours total content)
 - ✅ Keyboard shortcuts cheat sheet integrated
-- ✅ Professional landing page with navigation
 
-## Open Items
 
-### Content
-- [ ] Review all topics for accuracy and completeness
-- [ ] Add exercises/practice problems for each topic
-- [ ] Add quizzes to test understanding
-- [ ] Create assessment rubric for pre-work completion
-
-### Site Enhancements
-- [ ] Custom styling/theming to match company branding
-- [ ] Add progress tracking for students
-- [ ] Embed video content when available
-- [ ] Add estimated completion times per topic
-- [ ] Consider adding interactive code examples
-
-### Production Readiness
-- [ ] Record all video content based on guides
-- [ ] Set up hosting/deployment pipeline
-- [ ] Add analytics tracking
-- [ ] Create instructor dashboard
-- [ ] Define completion criteria
 
 ## Feedback & Suggestions
 
 ### From Stakeholders
-*Add client feedback and suggestions here as they come in*
+
+
+<Todo who="Company">
+Please share this link with anyone that would like to provide feedback on the content. They can either email me directly (jeff@hypertheory.com), or, if they are comfortable do so, there is a link at the top of this page where they can:
+
+- Submit Github Issues (See below)
+- Fork this repo and send me pull requests with suggested changes
+
+</Todo>
 
 ### Technical Considerations
-*Note any technical constraints or requirements from the company*
 
-### Content Adjustments Needed
-*Track requests for content changes, additions, or removals*
+<Todo who="Hypertheory">
+Follow up with company identity folks on creating a OIDC client for this site.
+</Todo>
 
-## Resources to Add
 
-### Reference Materials
-- [ ] Keyboard shortcuts cheat sheet (already created, need to link appropriately)
-- [ ] Glossary of terms
-- [ ] Troubleshooting guide
-- [ ] FAQ section
-- [ ] Additional reading list
 
-### Interactive Elements
-- [ ] Code sandboxes for hands-on practice
-- [ ] Interactive diagrams
-- [ ] Step-by-step walkthroughs
-- [ ] Challenge problems
+<GitHubIssues owner="JeffryGonzalez" repo="angular-launch-pad" />
 
-## Timeline
-
-### Phase 1: Content Review *(Current)*
-- Present proof of concept to stakeholders
-- Gather feedback on content and structure
-- Identify missing pieces or areas needing expansion
-
-### Phase 2: Enhancement
-- Implement feedback from Phase 1
-- Add interactive elements
-- Create supplementary materials
-
-### Phase 3: Video Production
-- Record all videos based on guides
-- Edit and produce final video content
-- Integrate videos into site
-
-### Phase 4: Deployment
-- Set up production hosting
-- Configure access controls if needed
-- Launch to pilot group
-- Gather metrics and feedback
-
-## Notes
-
-*Use this section for meeting notes, decisions made, and important context*
-
----
-
-## Component Testing
-
-:::note[Testing Section]
-This section is for testing components and will be removed later.
-:::
-
-### Screenshot Component Test
-
-**Code Sample:**
-
-<Screenshot 
-  src="/images/code-sample.png" 
-  alt="Sample code screenshot"
-  caption="Example of code in the editor"
-/>
-
-**DevTools Screenshot:**
-
-<Screenshot 
-  src="/images/devtools-sample.png" 
-  alt="Browser DevTools screenshot"
-  caption="Browser DevTools showing console tab"
-/>
-
-**SVG Diagram (Excalidraw - should auto-invert in dark mode):**
-
-<Screenshot 
-  src="/images/outbox.svg" 
-  alt="Outbox diagram"
-  caption="SVG diagram exported from Excalidraw - automatically inverted in dark mode"
-/>
-
----
-
-**Last Updated:** February 5, 2026
