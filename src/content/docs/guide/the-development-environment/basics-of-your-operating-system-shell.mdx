@@ -1,0 +1,166 @@
+---
+title: Basics of Your Operating System Shell
+description: Learn essential command line skills for navigating filesystems and running Angular development tools
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+import KeyboardShortcut from '../../../../components/KeyboardShortcut.astro';
+
+<VideoPlaceholder title="Introduction to the Command Line" />
+
+Web development requires *some* skill with using your operating system's shell. We will use bash, specifically "git bash" for this training. You don't need to be a "scripting wizard", but knowing how to change directories, navigate the file system, run commands and custom scripts, will be useful.
+
+## Navigating the File System
+
+Basic navigation is essential for moving around your project structure.
+
+**Key Commands:**
+- `pwd` (print working directory) - Shows your current location
+- `ls` (list) - Shows files and folders in current directory
+  - `ls -la` - Shows all files including hidden ones, with details
+- `cd` (change directory) - Move to a different folder
+  - `cd ..` - Move up one level
+  - `cd ~` - Go to your home directory
+  - `cd /path/to/folder` - Go to specific path
+
+**Why This Matters:**
+Angular CLI commands must be run from the correct directory. You need to navigate to your project folder before running `ng serve`, `ng generate`, or other Angular commands.
+
+**Further Reading:**
+- [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/)
+- [Command Line Crash Course](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line)
+
+## Creating and Removing Files and Directories
+
+Managing files from the command line speeds up your workflow.
+
+**Key Commands:**
+- `mkdir folder-name` - Create a new directory
+  - `mkdir -p path/to/nested/folder` - Create nested directories
+- `touch filename.txt` - Create an empty file
+- `rm filename.txt` - Remove a file
+- `rm -r folder-name` - Remove a directory and its contents (use carefully!)
+- `mv old-name.txt new-name.txt` - Rename or move files
+- `cp source.txt destination.txt` - Copy files
+
+**Why This Matters:**
+While you can use your graphical file explorer, the command line is often faster for creating project structures, cleaning up generated files, or running batch operations. Many tutorials and documentation assume command-line proficiency.
+
+**Further Reading:**
+- [MDN Command Line Crash Course](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line)
+
+## Running Executables and Scripts
+
+Understanding how to run programs and scripts is fundamental.
+
+**Key Points:**
+- Direct commands: `node`, `npm`, `ng`, `git`
+- Scripts in current directory: `./script.sh`
+- Running with specific interpreters: `node script.js`
+- npm scripts: `npm run build`, `npm start`, `npm test`
+- Permissions may be required: `chmod +x script.sh` makes a script executable
+
+**Why This Matters:**
+Angular development involves running many commands: starting dev servers, building your app, running tests, and more. You'll execute these dozens of times per day.
+
+**Further Reading:**
+- [Running Scripts Tutorial](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line#running_scripts)
+
+## Understanding PATH
+
+PATH determines where your shell looks for commands.
+
+**Key Points:**
+- PATH is an environment variable containing directories
+- When you type a command, the shell searches PATH directories in order
+- Check your PATH: `echo $PATH` (bash) or `echo %PATH%` (Windows)
+- Commands must be in a PATH directory or you must specify the full path
+- Installing Node.js, Git, etc. adds them to PATH
+
+**Why This Matters:**
+When `ng` or `npm` commands don't work, it's often a PATH issue. Understanding this helps you troubleshoot installation problems and understand why some commands work and others don't.
+
+**Further Reading:**
+- [PATH Environment Variable Explained](https://opensource.com/article/17/6/set-path-linux)
+
+## Basic Environment Variables
+
+Environment variables store configuration that programs can access.
+
+**Key Points:**
+- View a variable: `echo $VARIABLE_NAME`
+- Set temporarily: `export MY_VAR="value"` (bash)
+- Common variables: `HOME`, `PATH`, `USER`
+- Node.js uses: `NODE_ENV`, `PORT`
+- Angular can use environment variables in builds
+
+**Why This Matters:**
+Environment variables let you configure applications without changing code. You'll use them for API keys, feature flags, and environment-specific settings (development vs production).
+
+**Further Reading:**
+- [Environment Variables Guide](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html)
+
+## Hidden Files and the "." Prefix
+
+Files starting with a dot are hidden by default on Unix-like systems.
+
+**Key Points:**
+- `.gitignore`, `.editorconfig`, `.npmrc` are common hidden config files
+- View hidden files: `ls -la`
+- These files control tool behavior
+- The `.git` folder contains your repository data
+- Your home directory has many hidden config files (`.bashrc`, `.bash_profile`)
+
+**Why This Matters:**
+Many important Angular project files are hidden: `.gitignore` controls what's committed, `.editorconfig` standardizes formatting, and `.angular` contains build cache. You need to know they exist and how to view them.
+
+**Further Reading:**
+- [Hidden Files Explained](https://www.redhat.com/sysadmin/linux-hidden-files)
+
+## Command History and Shortcuts
+
+The shell remembers your commands and offers shortcuts.
+
+**Key Points:**
+- Up/Down arrows: Navigate command history
+- `history` - View recent commands
+- <KeyboardShortcut keys="Ctrl+R" /> - Search command history (very useful!)
+- <KeyboardShortcut keys="Ctrl+C" /> - Cancel current command
+- <KeyboardShortcut keys="Ctrl+A" /> - Go to start of line
+- <KeyboardShortcut keys="Ctrl+E" /> - Go to end of line
+- <KeyboardShortcut keys="Tab" /> - Auto-complete file/directory names
+- `!!` - Repeat last command
+
+**Why This Matters:**
+These shortcuts dramatically speed up your workflow. You'll repeat commands constantly (rebuilding, restarting servers), and history search saves you from retyping long commands.
+
+**Further Reading:**
+- [Bash Keyboard Shortcuts](https://www.howtogeek.com/howto/ubuntu/keyboard-shortcuts-for-bash-command-shell-for-ubuntu-debian-suse-redhat-linux-etc/)
+
+## Running Multiple Commands
+
+Chain commands together for efficiency.
+
+**Key Points:**
+- `&&` - Run second command only if first succeeds
+  - Example: `npm install && npm start`
+- `||` - Run second command only if first fails
+  - Example: `command1 || echo "Failed"`
+- `;` - Run commands in sequence regardless of success
+  - Example: `cd project; npm start`
+- `|` (pipe) - Send output of one command to input of another
+  - Example: `ls | grep ".ts"`
+
+**Why This Matters:**
+Chain commands to automate workflows. For example: `npm install && npm test && git commit` ensures you only commit if tests pass. This saves time and prevents mistakes.
+
+**Further Reading:**
+- [Command Chaining](https://www.tecmint.com/chaining-operators-in-linux-with-practical-examples/)
+
+## Additional Resources
+
+- [Git Bash for Windows](https://gitforwindows.org/)
+- [Terminal Basics for Web Developers](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line)
+
+<ReviewExercises />

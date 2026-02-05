@@ -1,0 +1,257 @@
+---
+title: Browser Developer Tools
+description: Master browser DevTools for debugging, inspecting, and optimizing Angular applications
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+import KeyboardShortcut from '../../../../components/KeyboardShortcut.astro';
+
+<VideoPlaceholder title="Introduction to Browser Developer Tools" />
+
+Modern browsers have powerful developer tools built in. Understanding how to use these tools is essential for debugging and understanding how your application works.
+
+## Opening and Navigating the Developer Tools
+
+Every modern browser includes built-in developer tools.
+
+**How to Open:**
+- **Keyboard**: <KeyboardShortcut keys="F12" /> or <KeyboardShortcut mac="Cmd+Alt+I" windows="Ctrl+Shift+I" linux="Ctrl+Shift+I" keys="Cmd+Alt+I" />
+- **Right-click**: On page → "Inspect" or "Inspect Element"
+- **Menu**: Browser menu → More Tools → Developer Tools
+
+**Tool Panels:**
+Most browsers have similar panels:
+- **Elements/Inspector**: View and edit HTML/CSS
+- **Console**: Run JavaScript, view logs and errors
+- **Sources/Debugger**: Debug JavaScript with breakpoints
+- **Network**: Monitor HTTP requests and responses
+- **Application/Storage**: View cookies, LocalStorage, etc.
+- **Performance**: Analyze page load and runtime performance
+- **Lighthouse**: Audit accessibility, performance, SEO
+
+**Layout Options:**
+- Dock to bottom, right, or separate window
+- Responsive design mode for testing mobile views
+- Device emulation
+
+**Why This Matters:**
+Browser DevTools are your primary debugging environment for Angular apps. You'll spend significant time here viewing HTML, debugging JavaScript, and inspecting network traffic.
+
+**Further Reading:**
+- [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+- [Firefox Developer Tools](https://firefox-source-docs.mozilla.org/devtools-user/)
+- [Safari Web Inspector](https://webkit.org/web-inspector/)
+
+## Console Tab: Logging, Errors, and Running JavaScript
+
+The Console is your command center for JavaScript.
+
+**Viewing Output:**
+```javascript
+console.log('Hello World');           // General info
+console.warn('This is a warning');    // Yellow warning
+console.error('This is an error');    // Red error
+console.table([{name: 'John', age: 30}]);  // Table format
+```
+
+**Running JavaScript:**
+- Type JavaScript directly in console
+- Access page variables and functions
+- Test code before adding to files
+- Inspect Angular components (with Angular DevTools extension)
+
+**Error Messages:**
+- See JavaScript errors with file names and line numbers
+- Click error to jump to source code
+- Stack traces show error origins
+
+**Common Console Commands:**
+```javascript
+// Clear console
+clear()
+
+// Inspect element
+inspect(document.querySelector('.my-class'))
+
+// Copy to clipboard
+copy(someVariable)
+```
+
+**Why This Matters:**
+The Console is essential for debugging Angular apps. You'll use `console.log()` constantly during development to inspect data, trace execution, and debug issues.
+
+**Further Reading:**
+- [Console Overview (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/console)
+- [Chrome Console Reference](https://developer.chrome.com/docs/devtools/console/reference/)
+
+## Elements/Inspector Tab: Viewing and Modifying HTML/CSS
+
+Inspect and edit page structure and styles in real-time.
+
+**Inspecting Elements:**
+- Click inspector button, then click any element on page
+- View HTML structure as tree
+- See all applied CSS styles
+- View computed styles (final calculated values)
+
+**Editing HTML:**
+- Double-click to edit text content
+- Right-click for options: Edit as HTML, Delete, etc.
+- Drag elements to reorder
+- Changes are temporary (page reload reverts)
+
+**Editing CSS:**
+- Click any property value to edit
+- Check/uncheck properties to toggle
+- Add new properties
+- Color picker for color values
+- See which CSS file and line number each rule comes from
+
+**Box Model Visualization:**
+- See margin, border, padding, content dimensions
+- Hover over sizes to highlight on page
+
+**Event Listeners:**
+- View all event listeners attached to element
+- See which code handles clicks, etc.
+
+**Why This Matters:**
+For Angular development, you'll use this to:
+- Verify your components render correct HTML
+- Debug CSS layout issues
+- Test style changes before adding to code
+- Understand why elements look a certain way
+
+**Further Reading:**
+- [Chrome Elements Panel](https://developer.chrome.com/docs/devtools/dom/)
+- [Inspect and Edit CSS](https://developer.chrome.com/docs/devtools/css/)
+
+## Network Tab: Inspecting HTTP Requests and Responses
+
+Monitor all network activity from your application.
+
+**What You See:**
+- Every HTTP request: HTML, CSS, JavaScript, images, API calls
+- Request method (GET, POST, etc.)
+- Status code (200, 404, 500, etc.)
+- Size and download time
+- Timeline showing when each request happened
+
+**Inspecting Requests:**
+Click any request to see:
+- **Headers**: Request/response headers, including authentication
+- **Preview**: Formatted view of response data
+- **Response**: Raw response text
+- **Timing**: Detailed breakdown of request timing
+- **Initiator**: What code triggered this request
+
+**Filtering:**
+- Filter by type: XHR/Fetch (API calls), JS, CSS, Images, etc.
+- Search for specific requests
+- Preserve log across page navigations
+
+**Common Tasks:**
+```
+1. Find failed API calls (red rows)
+2. Check API response data
+3. Verify correct headers sent
+4. Measure page load time
+5. Identify slow requests
+```
+
+**Why This Matters:**
+For Angular apps, the Network tab is crucial for:
+- Debugging API integration issues
+- Verifying data sent/received
+- Troubleshooting CORS errors
+- Optimizing performance
+- Understanding authentication flows
+
+**Further Reading:**
+- [Network Panel Overview](https://developer.chrome.com/docs/devtools/network/)
+- [Inspect Network Activity](https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor)
+
+## Debugging JavaScript with Breakpoints
+
+Pause code execution to inspect state and step through logic.
+
+**Setting Breakpoints:**
+1. Open Sources/Debugger tab
+2. Find your JavaScript file
+3. Click line number to set breakpoint
+4. Code will pause when it reaches that line
+
+**When Paused:**
+- Inspect variable values (hover or check scope panel)
+- View call stack (how you got here)
+- Step through code:
+  - **Step Over** (F10): Execute current line, move to next
+  - **Step Into** (F11): Enter function being called
+  - **Step Out** (Shift+F11): Exit current function
+  - **Continue** (F8): Resume until next breakpoint
+
+**Types of Breakpoints:**
+- **Line breakpoints**: Pause at specific line
+- **Conditional breakpoints**: Pause only when condition is true
+- **DOM breakpoints**: Pause when element changes
+- **XHR breakpoints**: Pause on specific API calls
+- **Exception breakpoints**: Pause when errors occur
+
+**Console While Paused:**
+- Access all current variables
+- Test expressions with current state
+
+**Why This Matters:**
+Breakpoints are more powerful than `console.log()`. For complex Angular debugging (why isn't this binding updating? why is this method not called?), breakpoints let you see exactly what's happening step by step.
+
+**Further Reading:**
+- [Debugging JavaScript (Chrome)](https://developer.chrome.com/docs/devtools/javascript/)
+- [Using Breakpoints](https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Set_a_breakpoint)
+
+## Device Emulation and Responsive Design Testing
+
+Test how your app looks on different devices and screen sizes.
+
+**Device Mode:**
+- Click device toolbar icon or press <KeyboardShortcut keys="Cmd+Shift+M" />
+- Choose preset devices (iPhone, iPad, etc.) or custom dimensions
+- Rotate orientation (portrait/landscape)
+- Throttle network speed (3G, 4G, etc.)
+- Simulate touch events
+
+**Responsive Testing:**
+- Drag viewport size to test responsive layouts
+- Test CSS media queries
+- Verify mobile navigation works
+- Check text readability at different sizes
+
+**What to Test:**
+```
+- Mobile (320px - 480px)
+- Tablet (768px - 1024px)
+- Desktop (1024px+)
+- Touch interactions
+- Performance on slower connections
+```
+
+**Limitations:**
+- Emulation isn't perfect - test on real devices when possible
+- Different devices have different quirks
+- Performance differs from real hardware
+
+**Why This Matters:**
+Angular apps must work across devices. Responsive testing in DevTools lets you quickly verify layouts without owning every device. Most users access web apps on mobile, so mobile testing is critical.
+
+**Further Reading:**
+- [Device Mode (Chrome)](https://developer.chrome.com/docs/devtools/device-mode/)
+- [Responsive Design Mode (Firefox)](https://firefox-source-docs.mozilla.org/devtools-user/responsive_design_mode/)
+
+## Additional Resources
+
+- [Chrome DevTools Documentation](https://developer.chrome.com/docs/devtools/)
+- [Firefox DevTools](https://firefox-source-docs.mozilla.org/devtools-user/)
+- [Angular DevTools Extension](https://angular.io/guide/devtools) - Angular-specific debugging
+- [DevTools Tips](https://devtoolstips.org/) - Collection of useful tips
+
+<ReviewExercises />

@@ -1,0 +1,144 @@
+---
+title: Our Editor
+description: Configure Visual Studio Code for Angular development with essential extensions and settings
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+
+<VideoPlaceholder title="Introduction to VS Code" />
+
+Visual Studio Code has become the de facto standard for modern web development, with excellent TypeScript support, integrated debugging, and a rich ecosystem of extensions that make Angular development more productive.
+
+We will start with some general topics related to Visual Studio Code use, optimization, and features. Then we will explore configuring VS Code specifically for Angular Development and working with the Git source control tool.
+
+## Customization
+
+VS Code is highly customizable, allowing you to tailor the editor to your workflow and preferences.
+
+**Key Points:**
+- **Themes**: Change the color theme to reduce eye strain and match your preferences (File > Preferences > Theme > Color Theme)
+- **Keybindings**: Customize keyboard shortcuts or use keymaps from other editors you're familiar with (File > Preferences > Keyboard Shortcuts)
+- **Layout**: Rearrange panels, toggle sidebars, and customize the activity bar
+- **Font and Display**: Adjust font size, family, and ligatures for better readability
+- **Command Palette** (`Cmd/Ctrl+Shift+P`): Access any command quickly without memorizing menus
+
+**Why This Matters:**
+A comfortable editor setup increases productivity and reduces friction. When you can work efficiently without fighting your tools, you can focus on learning Angular.
+
+**Further Reading:**
+- [VS Code User Interface](https://code.visualstudio.com/docs/getstarted/userinterface)
+- [Themes](https://code.visualstudio.com/docs/getstarted/themes)
+- [Key Bindings](https://code.visualstudio.com/docs/getstarted/keybindings)
+
+## Workspaces
+
+Workspaces allow you to group related folders and configure settings specific to a project.
+
+**Key Points:**
+- **Single Folder**: Open a single project folder - the simplest approach
+- **Multi-root Workspaces**: Combine multiple folders into one workspace (useful for monorepos or when frontend/backend are separate)
+- **Workspace Files** (`.code-workspace`): Save workspace configuration to share with your team
+- **Workspace-specific Settings**: Override user settings for specific projects
+
+**Why This Matters:**
+Angular projects often have specific requirements. Workspace settings let you maintain different configurations for different projects without affecting your global VS Code setup.
+
+**Further Reading:**
+- [Workspaces](https://code.visualstudio.com/docs/editor/workspaces)
+- [Multi-root Workspaces](https://code.visualstudio.com/docs/editor/multi-root-workspaces)
+
+## Settings and `settings.json`
+
+VS Code settings control editor behavior and can be configured at user or workspace level.
+
+**Key Points:**
+- **Settings UI**: Access via File > Preferences > Settings (or `Cmd/Ctrl+,`)
+- **settings.json**: The JSON file behind the settings UI, allows more advanced configuration
+- **User vs Workspace**: User settings apply globally; workspace settings override for specific projects
+- **Settings Sync**: Sync your settings across machines using your GitHub/Microsoft account
+- **Common Settings for Angular**:
+  - `"editor.formatOnSave": true` - Auto-format code when saving
+  - `"editor.tabSize": 2` - Standard for TypeScript/Angular
+  - `"files.autoSave": "onFocusChange"` - Save automatically
+
+**Why This Matters:**
+Consistent settings across your team ensures everyone sees the same formatting and linting issues, reducing merge conflicts and code review friction.
+
+**Further Reading:**
+- [User and Workspace Settings](https://code.visualstudio.com/docs/getstarted/settings)
+- [Settings Sync](https://code.visualstudio.com/docs/editor/settings-sync)
+
+## The `.vscode` Folder
+
+The `.vscode` folder in your project root contains workspace-specific configuration files.
+
+**Key Points:**
+- **Purpose**: Stores project-specific settings, tasks, launch configurations, and recommended extensions
+- **Common Files**:
+  - `settings.json` - Workspace settings
+  - `extensions.json` - Recommended extensions for the project
+  - `launch.json` - Debug configurations
+  - `tasks.json` - Build and automation tasks
+- **Version Control**: Typically committed to Git so the entire team shares the same configuration
+- **Team Consistency**: Ensures everyone on the team has the same development experience
+
+**Why This Matters:**
+Angular CLI projects can include `.vscode` configurations that help your team use the same settings, making onboarding easier and reducing "it works on my machine" issues.
+
+**Further Reading:**
+- [Workspace Settings Files](https://code.visualstudio.com/docs/getstarted/settings#_workspace-settings)
+- [Tasks](https://code.visualstudio.com/docs/editor/tasks)
+- [Debugging](https://code.visualstudio.com/docs/editor/debugging)
+
+## Extensions
+
+Extensions add functionality to VS Code, from language support to productivity tools.
+
+**Key Points:**
+- **Extensions Marketplace**: Browse and install extensions from within VS Code or online
+- **Essential for Angular**:
+  - Angular Language Service - IntelliSense, error checking, navigation
+  - ESLint - JavaScript/TypeScript linting
+  - Prettier - Code formatting
+  - GitLens - Enhanced Git capabilities
+- **Extension Management**: Enable/disable per workspace, keep extensions updated
+- **Recommended Extensions**: Use `extensions.json` to suggest extensions to team members
+
+**Why This Matters:**
+The right extensions transform VS Code into a powerful Angular IDE with intelligent code completion, error detection, and refactoring tools that match dedicated IDEs.
+
+**Further Reading:**
+- [Extension Marketplace](https://code.visualstudio.com/docs/editor/extension-marketplace)
+- [Managing Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace#_manage-extensions)
+- [Workspace Recommended Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions)
+
+## Language Servers and the Language Server Protocol
+
+The Language Server Protocol (LSP) enables rich language features in VS Code.
+
+**Key Points:**
+- **What is LSP**: A protocol that separates language-specific features from the editor
+- **Language Server**: A separate process that provides IntelliSense, go-to-definition, find references, error detection
+- **Benefits**:
+  - Same language intelligence across different editors
+  - Language features run in separate process (doesn't block the editor)
+  - One language server can power multiple editors
+- **For Angular**: Angular Language Service uses LSP to understand your templates, components, and TypeScript code
+- **Behind the Scenes**: You don't configure this directly, but understanding it helps troubleshoot issues
+
+**Why This Matters:**
+LSP is why you get intelligent TypeScript and Angular template completion, error checking, and refactoring. Understanding this helps you troubleshoot when IntelliSense isn't working correctly.
+
+**Further Reading:**
+- [Language Server Protocol](https://code.visualstudio.com/api/language-extensions/language-server-extension-guide)
+- [Language Extensions Overview](https://microsoft.github.io/language-server-protocol/)
+- [Angular Language Service](https://angular.io/guide/language-service)
+
+## Additional Resources
+
+- [VS Code Tips and Tricks](https://code.visualstudio.com/docs/getstarted/tips-and-tricks)
+- [VS Code for Web Development](https://code.visualstudio.com/docs/languages/html)
+- [TypeScript in VS Code](https://code.visualstudio.com/docs/languages/typescript)
+
+<ReviewExercises />

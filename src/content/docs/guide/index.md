@@ -1,0 +1,52 @@
+---
+title: Angular 100 Pre-Work
+description: Self-paced training materials to prepare for Angular development
+---
+
+Training can best get you from "point a" to "point b" if everyone is starting at the same "point a". Developers have diverse backgrounds and experiences. Some developers have done web development for years, know HTML like the back of their hand, are CSS wizards, and have used a variety of frameworks and libraries, both server-side and client-side.
+
+For others, they've somehow made it through their career without having to worry about that stuff, and it can feel pretty intimidating when starting something new.
+
+Another aspect is that even if you have extensive experience, the web platform has evolved significantly in recent years. What used to be a "best practice" may now be considered outdated or even contrary to current principles.
+
+If you are to be a successful and happy Angular developer, we want to give you the resources to begin your training with all the background knowledge you need to fully embrace and benefit from the course, and help you fill in any "gaps" in your understanding and skills.
+
+Nobody expects you to be a master of all these things yet. It will take time, and you'll have plenty of opportunity to learn. We have identified the following key areas for you to visit, assess yourself on, and explore before you begin your training.
+
+## Suggested Approach
+
+Even if you are a seasoned professional in some or all of these topics, please go through the provided materials. At the end of each section there will be a quiz, a practice exercise, or both. The emphasis here may differ from what you've encountered before - these materials are specifically selected to help you better understand how Angular works and how to successfully write Angular applications. You might say this is a "focused" view of the web platform, optimized not to make you a "Jack or Jill of all trades", but to give you just enough foundation to approach Angular application development with the right mindset and understanding.
+
+**Time Commitment**: For those with moderate web development experience, you should be able to work through these materials in 1-2 days. If you're newer to web development, plan for more time - this is a self-paced journey, and there's no rush. The goal is understanding, not speed.
+
+## Topics
+
+The following topics have been selected to provide you with the foundation you'll need for the Angular training. There is a logical progression to these topics, so we recommend working through them in order. Each section builds on concepts from the previous ones.
+
+### The Development Environment
+
+Before writing any code, you'll need to set up your development environment and become comfortable with the tools you'll be using daily. Angular development relies on several interconnected tools, and understanding how they work together will make your development experience much smoother.
+
+1. [Our Editor](/guide/the-development-environment/our-editor/)
+2. [Basics of Your Operating System Shell](/guide/the-development-environment/basics-of-your-operating-system-shell/)
+3. [The Basics of Source Code Control](/guide/the-development-environment/the-basics-of-source-code-control/)
+4. [Node.js and the Node Package Manager (NPM)](/guide/the-development-environment/node-js-and-the-node-package-manager/)
+
+### The Web Platform
+
+Angular applications are web applications, built on top of the foundational technologies of the web. Having a solid understanding of how the web "works" is crucial if you're going to build applications that rely on the World Wide Web. Understanding the difference between static web sites, server-side web applications, and so-called "single page applications" (SPAs) like we will emphasize in this course is important. A foundational knowledge of networking essentials will also go a long way in helping you understand how your Angular applications communicate and function.
+
+1. [The World Wide Web](/guide/the-web-platform/the-world-wide-web/)
+2. [HTML](/guide/the-web-platform/html/)
+3. [Cascading Style Sheets (CSS)](/guide/the-web-platform/cascading-style-sheets/)
+4. [Introduction to Accessibility](/guide/the-web-platform/introduction-to-accessibility/)
+5. [JavaScript](/guide/the-web-platform/java-script/)
+6. [Browser Developer Tools](/guide/the-web-platform/browser-developer-tools/)
+7. [The Document Object Model (DOM)](/guide/the-web-platform/the-document-object-model/)
+8. [Introduction to TypeScript](/guide/the-web-platform/introduction-to-type-script/)
+
+## Helpful Resources
+
+### [Keyboard Shortcuts Cheat Sheet](/guide/keyboard-shortcuts-cheat-sheet/)
+
+A comprehensive reference of keyboard shortcuts for Visual Studio Code, the terminal/shell, browser, and browser developer tools. Students consistently tell us that learning keyboard shortcuts dramatically improves their productivity and confidence. Keep this cheat sheet handy as you work through the materials and practice the shortcuts daily—they'll quickly become muscle memory!

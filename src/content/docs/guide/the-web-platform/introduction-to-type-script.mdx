@@ -1,0 +1,53 @@
+---
+title: Introduction to TypeScript
+description: Get started with TypeScript types, interfaces, and classes before diving into Angular
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+
+<VideoPlaceholder title="Introduction to TypeScript" />
+
+TypeScript is a superset of JavaScript that adds static typing and other features to help you write more maintainable code. Angular is built with TypeScript, and all Angular applications are written using TypeScript. Understanding the basics will help you read and write Angular code from day one.
+
+This introduction covers just enough TypeScript to get you started with Angular development. You'll take a comprehensive three-day TypeScript training later that goes much deeper into the language features and advanced patterns.
+
+## Key Points
+
+- **TypeScript is a superset of JavaScript**: All valid JavaScript is valid TypeScript. TypeScript adds optional type annotations and compiles (transpiles) to standard JavaScript.
+
+- **The TypeScript compiler (tsc)**: TypeScript code cannot run directly in browsers. The TypeScript compiler checks your code for type errors and converts it to JavaScript.
+
+- **Type annotations**: You can specify what type of data a variable, parameter, or function return value should be. The compiler will warn you if you try to use the wrong type.
+
+- **Basic types**: TypeScript provides types like `string`, `number`, `boolean`, `any`, `unknown`, `void`, `null`, and `undefined`. Arrays and objects have their own type syntax.
+
+- **Interfaces and Types**: Both `interface` and `type` can define the shape of objects, specifying what properties and methods they should have. They're very similar in most cases. You'll see both in Angular code and documentation. In this course, we tend to use `type` as it helps developers with Java or .NET experience approach TypeScript with fresh eyes.
+
+- **Classes**: TypeScript has full support for ES6 classes plus additional features like access modifiers (`public`, `private`, `protected`). Angular components are TypeScript classes.
+
+- **Type inference**: TypeScript can often figure out types automatically, so you don't always need to write type annotations explicitly.
+
+- **tsconfig.json**: This configuration file controls how the TypeScript compiler behaves in your project. Angular CLI creates this for you with sensible defaults.
+
+- **Type safety benefits**: Types catch errors at compile time instead of runtime, provide better IDE autocomplete and refactoring support, and serve as inline documentation.
+
+## Why This Matters for Angular Development
+
+Angular is written in TypeScript and designed to be used with TypeScript. While you can technically write Angular applications in plain JavaScript, you would miss out on most of Angular's developer experience benefits.
+
+When you create components, services, and other Angular constructs, you'll be writing TypeScript classes. When you define data models for your application, you'll use TypeScript types or interfaces to describe the shape of your data. When you inject dependencies, TypeScript ensures you're using the right types. The Angular documentation and examples all use TypeScript, so being comfortable with the syntax is essential.
+
+TypeScript's type system helps prevent common bugs before they reach your users. For example, if you have a method that expects a `User` object but you accidentally pass a `string`, TypeScript will catch this immediately in your editor, not when a user clicks a button.
+
+The Angular CLI handles all the TypeScript compilation for you automatically, so you can focus on writing code. Your editor (VS Code with the Angular extensions) will give you real-time type checking, intelligent autocomplete, and instant error feedback as you type.
+
+Don't worry if TypeScript feels unfamiliar at first. You'll pick it up quickly as you work through Angular examples, and the full TypeScript training will fill in all the details later.
+
+## Further Reading
+
+- [TypeScript Official Documentation](https://www.typescriptlang.org/docs/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [TypeScript in 5 Minutes](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+
+<ReviewExercises />

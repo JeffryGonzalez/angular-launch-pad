@@ -1,0 +1,247 @@
+---
+title: HTML
+description: Learn HTML fundamentals and semantic markup for building accessible Angular templates
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+
+<VideoPlaceholder title="Introduction to HTML" />
+
+HTML is the structural foundation of every web page. While Angular abstracts away much of the direct HTML manipulation, it's built on the assumption that you understand HTML fundamentals. Angular templates are HTML, enhanced with Angular-specific syntax. The better you understand HTML, the more effectively you can use Angular.
+
+We will start by exploring static HTML documents. In Angular, it is assumed you know this foundational material, and one of its primary benefits is
+
+ that it can hide some of this "low-level" work from you - but that assumes you already understand what's happening under the hood.
+
+## Document Structure
+
+Every HTML document follows a standard structure.
+
+**Basic HTML5 Document:**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Title</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Hello World</h1>
+  <p>Content goes here</p>
+  <script src="script.js"></script>
+</body>
+</html>
+```
+
+**Key Parts:**
+- `<!DOCTYPE html>`: Tells browser this is HTML5
+- `<html>`: Root element, contains everything
+- `<head>`: Metadata, title, links to CSS
+- `<body>`: Visible content
+- Proper nesting: Elements must be properly opened and closed
+
+**Why This Matters:**
+Angular applications render into the `<body>` of an HTML document. Understanding structure helps you work with index.html and organize your application's entry point.
+
+**Further Reading:**
+- [HTML Basics (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics)
+- [Document Structure (MDN)](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure)
+
+## Elements - Attributes, Boolean Attributes, and More
+
+HTML elements are the building blocks of web pages.
+
+**Anatomy of an Element:**
+```html
+<a href="https://example.com" target="_blank">Click me</a>
+```
+- `<a>`: Opening tag
+- `href`, `target`: Attributes
+- `Click me`: Content
+- `</a>`: Closing tag
+
+**Attributes:**
+- Provide additional information
+- Format: `name="value"`
+- **Common attributes**: `id`, `class`, `style`, `title`, `data-*`
+
+**Boolean Attributes:**
+```html
+<input type="checkbox" checked>
+<button disabled>Can't click</button>
+<script src="app.js" defer></script>
+```
+- Presence = true, absence = false
+- Value doesn't matter: `checked` and `checked="checked"` are the same
+
+**Self-Closing Elements:**
+```html
+<img src="photo.jpg" alt="Description">
+<br>
+<input type="text">
+<meta charset="UTF-8">
+```
+
+**How Modern HTML Differs from XML:**
+- HTML is more forgiving: case-insensitive tags, optional closing tags for some elements
+- XML is stricter: case-sensitive, all tags must close
+- HTML5 simplified rules compared to XHTML
+
+**Why This Matters:**
+Angular templates use HTML syntax. Understanding attributes is crucial because Angular adds its own attributes (`*ngIf`, `[property]`, `(event)`). Knowing HTML basics helps you distinguish Angular syntax from standard HTML.
+
+**Further Reading:**
+- [HTML Elements (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [HTML Attributes (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)
+
+## Semantic HTML
+
+Use elements that describe their meaning, not just their appearance.
+
+**Non-Semantic (Bad):**
+```html
+<div class="header">
+  <div class="nav">
+    <div>Links</div>
+  </div>
+</div>
+<div class="main-content">
+  <div class="article">Content</div>
+</div>
+```
+
+**Semantic (Good):**
+```html
+<header>
+  <nav>
+    <ul>Links</ul>
+  </nav>
+</header>
+<main>
+  <article>Content</article>
+</main>
+```
+
+**Common Semantic Elements:**
+- **Basic**: `<p>`, `<h1>`-`<h6>`, `<ul>`, `<ol>`, `<li>`
+- **Text meaning**: `<strong>`, `<em>`, `<code>`, `<mark>`
+- **Landmark elements**:
+  - `<header>`: Page or section header
+  - `<nav>`: Navigation links
+  - `<main>`: Primary content
+  - `<article>`: Self-contained content
+  - `<section>`: Thematic grouping
+  - `<aside>`: Tangential content (sidebar)
+  - `<footer>`: Page or section footer
+
+**Non-Semantic Elements:**
+- `<div>`: Generic container (use when no semantic element fits)
+- `<span>`: Generic inline container
+
+**Why This Matters:**
+Semantic HTML improves accessibility (screen readers understand structure), SEO (search engines understand content), and maintainability (code self-documents). Angular components should output semantic HTML.
+
+**Further Reading:**
+- [Semantic HTML (MDN)](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html)
+- [HTML Elements Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+
+## HTML as Organization, Not Presentation
+
+Separate structure from styling.
+
+**Key Principles:**
+- HTML defines WHAT content is (heading, paragraph, list)
+- CSS defines HOW it looks (colors, fonts, layout)
+- Don't use HTML for visual effects
+
+**Bad (Presentation in HTML):**
+```html
+<font size="7" color="red">Important Title</font>
+<center>Centered text</center>
+<br><br><br>  <!-- Using <br> for spacing -->
+```
+
+**Good (Semantic HTML + CSS):**
+```html
+<h1>Important Title</h1>
+<p class="centered">Centered text</p>
+
+<!-- CSS handles look -->
+<style>
+h1 { font-size: 2rem; color: red; }
+.centered { text-align: center; }
+</style>
+```
+
+**Why This Matters:**
+Separating structure from presentation makes your code maintainable. You can change styling without touching HTML. This principle carries into Angular, where components separate template (HTML) from styles (CSS).
+
+**Further Reading:**
+- [Separation of Concerns](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure#planning_a_simple_website)
+
+## The Role of the User-Agent Stylesheet
+
+Browsers apply default styles to HTML elements.
+
+**Key Points:**
+- Every browser has built-in CSS (user-agent stylesheet)
+- Provides default appearance: margins, font sizes, colors
+- Examples:
+  - `<h1>` is large and bold
+  - `<ul>` has bullets
+  - Links are blue and underlined
+- **Different browsers have different defaults**
+
+**Why This Matters:**
+Understanding default styles explains why your unstyled HTML already has some formatting. It also explains inconsistencies across browsers and why CSS resets exist.
+
+**Further Reading:**
+- [User-Agent Stylesheet (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade#user-agent_stylesheets)
+
+## Using a CSS Reset
+
+Normalize browser differences with a CSS reset.
+
+**The Problem:**
+- Browsers have different default styles
+- Makes consistent design difficult
+- Margins, paddings, and sizes vary
+
+**The Solution:**
+```html
+<!-- Option 1: Normalize.css (subtle normalization) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize.css/8.0.1/normalize.min.css">
+
+<!-- Option 2: CSS Reset (aggressive reset) -->
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+</style>
+```
+
+**Popular Options:**
+- **Normalize.css**: Makes styles consistent across browsers while preserving useful defaults
+- **CSS Reset**: Removes all browser styling
+- **Modern CSS Reset**: Minimal reset for modern browsers
+
+**Why This Matters:**
+CSS resets ensure your Angular app looks consistent across browsers. Most Angular projects include some form of reset in global styles.
+
+**Further Reading:**
+- [Normalize.css](https://necolas.github.io/normalize.css/)
+- [CSS Reset](https://meyerweb.com/eric/tools/css/reset/)
+- [Modern CSS Reset](https://piccalil.li/blog/a-modern-css-reset/)
+
+## Additional Resources
+
+- [MDN HTML Documentation](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [HTML Living Standard](https://html.spec.whatwg.org/)
+- [Learn HTML (MDN)](https://developer.mozilla.org/en-US/docs/Learn/HTML)
+
+<ReviewExercises />

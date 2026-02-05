@@ -1,0 +1,220 @@
+---
+title: Keyboard Shortcuts Cheat Sheet
+description: Quick reference for VS Code, terminal, browser, and DevTools keyboard shortcuts
+---
+
+import KeyboardShortcut from '../../../components/KeyboardShortcut.astro';
+
+Quick reference for the most useful keyboard shortcuts you'll use daily in Angular development. Keep this handy as you work through the training materials and your Angular projects.
+
+:::tip
+The shortcuts below automatically adapt to your operating system, showing Mac symbols (⌘, ⌥, ⌃) on macOS and standard labels on Windows/Linux.
+:::
+
+---
+
+## Visual Studio Code
+
+### Essential Shortcuts
+
+- **Command Palette**: <KeyboardShortcut keys="Cmd+Shift+P" />
+- **Quick Open** (files): <KeyboardShortcut keys="Cmd+P" />
+- **Settings**: <KeyboardShortcut keys="Cmd+," />
+- **Keyboard Shortcuts**: <KeyboardShortcut keys="Cmd+K" /> then <KeyboardShortcut keys="Cmd+S" />
+- **Extensions**: <KeyboardShortcut keys="Cmd+Shift+X" />
+- **Toggle Terminal**: <KeyboardShortcut keys="Ctrl+`" />
+- **New Terminal**: <KeyboardShortcut keys="Ctrl+Shift+`" />
+
+### Editing
+
+- **Cut Line**: <KeyboardShortcut keys="Cmd+X" />
+- **Copy Line**: <KeyboardShortcut keys="Cmd+C" />
+- **Move Line Up/Down**: <KeyboardShortcut keys="Alt+Up" /> / <KeyboardShortcut keys="Alt+Down" />
+- **Copy Line Up/Down**: <KeyboardShortcut keys="Shift+Alt+Up" /> / <KeyboardShortcut keys="Shift+Alt+Down" />
+- **Delete Line**: <KeyboardShortcut keys="Cmd+Shift+K" />
+- **Insert Line Below**: <KeyboardShortcut keys="Cmd+Enter" />
+- **Insert Line Above**: <KeyboardShortcut keys="Cmd+Shift+Enter" />
+- **Toggle Line Comment**: <KeyboardShortcut keys="Cmd+/" />
+- **Toggle Block Comment**: <KeyboardShortcut keys="Shift+Alt+A" />
+- **Format Document**: <KeyboardShortcut keys="Shift+Alt+F" />
+- **Multi-cursor**: <KeyboardShortcut mac="Option+Click" windows="Alt+Click" linux="Alt+Click" keys="Alt+Click" />
+- **Select Next Match**: <KeyboardShortcut keys="Cmd+D" />
+- **Select All Matches**: <KeyboardShortcut keys="Cmd+Shift+L" />
+
+### Navigation
+
+- **Go to Line**: <KeyboardShortcut keys="Ctrl+G" />
+- **Go to Symbol**: <KeyboardShortcut keys="Cmd+Shift+O" />
+- **Go to Definition**: <KeyboardShortcut keys="F12" />
+- **Peek Definition**: <KeyboardShortcut keys="Alt+F12" />
+- **Go Back**: <KeyboardShortcut mac="Ctrl+-" windows="Ctrl+Alt+-" linux="Ctrl+Alt+-" keys="Ctrl+-" />
+- **Go Forward**: <KeyboardShortcut keys="Ctrl+Shift+-" />
+- **Find**: <KeyboardShortcut keys="Cmd+F" />
+- **Replace**: <KeyboardShortcut mac="Cmd+Alt+F" windows="Ctrl+H" linux="Ctrl+H" keys="Cmd+Alt+F" />
+- **Find in Files**: <KeyboardShortcut keys="Cmd+Shift+F" />
+
+### Workspace
+
+- **Toggle Sidebar**: <KeyboardShortcut keys="Cmd+B" />
+- **Explorer**: <KeyboardShortcut keys="Cmd+Shift+E" />
+- **Search**: <KeyboardShortcut keys="Cmd+Shift+F" />
+- **Source Control**: <KeyboardShortcut keys="Ctrl+Shift+G" />
+- **Debug**: <KeyboardShortcut keys="Cmd+Shift+D" />
+- **Split Editor**: <KeyboardShortcut keys="Cmd+\" />
+- **Close Editor**: <KeyboardShortcut keys="Cmd+W" />
+- **Reload Window**: <KeyboardShortcut keys="Cmd+Shift+P" /> then type "Reload Window"
+
+### Debugging
+
+- **Toggle Breakpoint**: <KeyboardShortcut keys="F9" />
+- **Start/Continue**: <KeyboardShortcut keys="F5" />
+- **Step Over**: <KeyboardShortcut keys="F10" />
+- **Step Into**: <KeyboardShortcut keys="F11" />
+- **Step Out**: <KeyboardShortcut keys="Shift+F11" />
+- **Stop**: <KeyboardShortcut keys="Shift+F5" />
+
+---
+
+## Terminal / Shell
+
+### Navigation & History
+
+- **Previous Command**: <KeyboardShortcut keys="Up" />
+- **Next Command**: <KeyboardShortcut keys="Down" />
+- **Search History**: <KeyboardShortcut keys="Ctrl+R" />
+- **Clear Screen**: <KeyboardShortcut mac="Cmd+K" windows="Ctrl+L" linux="Ctrl+L" keys="Cmd+K" /> or type `clear`
+- **Autocomplete**: <KeyboardShortcut keys="Tab" />
+
+### Control
+
+- **Cancel Command**: <KeyboardShortcut keys="Ctrl+C" />
+- **End of File (EOF)**: <KeyboardShortcut keys="Ctrl+D" />
+- **Move to Start of Line**: <KeyboardShortcut keys="Ctrl+A" />
+- **Move to End of Line**: <KeyboardShortcut keys="Ctrl+E" />
+- **Delete Word Backward**: <KeyboardShortcut keys="Ctrl+W" />
+- **Delete to End of Line**: <KeyboardShortcut keys="Ctrl+K" />
+
+### Common Commands
+
+```bash
+pwd              # Print working directory
+ls               # List files
+ls -la           # List all files (including hidden) with details
+cd directory     # Change directory
+cd ..            # Go up one level
+cd ~             # Go to home directory
+mkdir name       # Create directory
+rm file          # Remove file
+rm -rf directory # Remove directory and contents (use carefully!)
+cp source dest   # Copy file
+mv source dest   # Move/rename file
+```
+
+---
+
+## Browser
+
+### General Browser Shortcuts
+
+- **New Tab**: <KeyboardShortcut keys="Cmd+T" />
+- **Close Tab**: <KeyboardShortcut keys="Cmd+W" />
+- **Reopen Closed Tab**: <KeyboardShortcut keys="Cmd+Shift+T" />
+- **Next Tab**: <KeyboardShortcut mac="Cmd+Alt+Right" windows="Ctrl+Tab" linux="Ctrl+Tab" keys="Cmd+Alt+Right" />
+- **Previous Tab**: <KeyboardShortcut mac="Cmd+Alt+Left" windows="Ctrl+Shift+Tab" linux="Ctrl+Shift+Tab" keys="Cmd+Alt+Left" />
+- **Refresh Page**: <KeyboardShortcut keys="Cmd+R" />
+- **Hard Refresh** (clear cache): <KeyboardShortcut keys="Cmd+Shift+R" />
+- **Open DevTools**: <KeyboardShortcut mac="Cmd+Alt+I" windows="Ctrl+Shift+I" linux="Ctrl+Shift+I" keys="Cmd+Alt+I" /> or <KeyboardShortcut keys="F12" />
+- **Address Bar**: <KeyboardShortcut keys="Cmd+L" />
+- **Find in Page**: <KeyboardShortcut keys="Cmd+F" />
+- **Zoom In**: <KeyboardShortcut keys="Cmd++" />
+- **Zoom Out**: <KeyboardShortcut keys="Cmd+-" />
+- **Reset Zoom**: <KeyboardShortcut keys="Cmd+0" />
+
+---
+
+## Browser Developer Tools
+
+### Opening DevTools
+
+- **Open DevTools**: <KeyboardShortcut mac="Cmd+Alt+I" windows="Ctrl+Shift+I" linux="Ctrl+Shift+I" keys="Cmd+Alt+I" /> or <KeyboardShortcut keys="F12" />
+- **Open Console**: <KeyboardShortcut mac="Cmd+Alt+J" windows="Ctrl+Shift+J" linux="Ctrl+Shift+J" keys="Cmd+Alt+J" />
+- **Open Elements**: <KeyboardShortcut mac="Cmd+Alt+C" windows="Ctrl+Shift+C" linux="Ctrl+Shift+C" keys="Cmd+Alt+C" />
+- **Device Mode Toggle**: <KeyboardShortcut keys="Cmd+Shift+M" />
+
+### Within DevTools
+
+- **Command Menu**: <KeyboardShortcut keys="Cmd+Shift+P" />
+- **Toggle Console Drawer**: <KeyboardShortcut keys="Esc" />
+- **Next Panel**: <KeyboardShortcut keys="Cmd+]" />
+- **Previous Panel**: <KeyboardShortcut keys="Cmd+[" />
+- **Refresh DevTools**: <KeyboardShortcut keys="Cmd+R" /> or <KeyboardShortcut keys="F5" />
+- **Clear Console**: <KeyboardShortcut mac="Cmd+K" windows="Ctrl+L" linux="Ctrl+L" keys="Cmd+K" />
+- **Search All Files**: <KeyboardShortcut mac="Cmd+Alt+F" windows="Ctrl+Shift+F" linux="Ctrl+Shift+F" keys="Cmd+Alt+F" />
+
+### Console
+
+- **Auto-complete**: <KeyboardShortcut keys="Tab" /> or <KeyboardShortcut keys="Right" />
+- **Clear Console**: <KeyboardShortcut mac="Cmd+K" windows="Ctrl+L" linux="Ctrl+L" keys="Cmd+K" /> or type `clear()`
+- **Previous Command**: <KeyboardShortcut keys="Up" />
+- **Next Command**: <KeyboardShortcut keys="Down" />
+- **Multi-line Entry**: <KeyboardShortcut keys="Shift+Enter" />
+
+### Elements/Inspector Tab
+
+- **Inspect Element**: <KeyboardShortcut keys="Cmd+Shift+C" />
+- **Edit as HTML**: <KeyboardShortcut keys="F2" />
+- **Expand/Collapse Node**: <KeyboardShortcut keys="Right" /> / <KeyboardShortcut keys="Left" />
+- **Navigate Nodes**: <KeyboardShortcut keys="Up" /> / <KeyboardShortcut keys="Down" />
+
+### Sources/Debugger Tab
+
+- **Toggle Breakpoint**: <KeyboardShortcut keys="Cmd+B" /> or click line number
+- **Resume/Pause**: <KeyboardShortcut keys="F8" /> or <KeyboardShortcut keys="Cmd+\" />
+- **Step Over**: <KeyboardShortcut keys="F10" /> or <KeyboardShortcut keys="Cmd+'" />
+- **Step Into**: <KeyboardShortcut keys="F11" /> or <KeyboardShortcut keys="Cmd+;" />
+- **Step Out**: <KeyboardShortcut keys="Shift+F11" /> or <KeyboardShortcut keys="Cmd+Shift+;" />
+
+### Network Tab
+
+- **Start/Stop Recording**: <KeyboardShortcut keys="Cmd+E" />
+- **Clear Network Log**: <KeyboardShortcut mac="Cmd+K" windows="Ctrl+L" linux="Ctrl+L" keys="Cmd+K" />
+- **Preserve Log**: Check "Preserve log" option
+- **Filter**: Click filter or type in filter box
+
+---
+
+## Tips for Learning Shortcuts
+
+1. **Start Small**: Pick 3-5 shortcuts you'll use most often and practice them deliberately
+2. **Command Palette is Your Friend**: When you forget a shortcut, use the Command Palette (`Cmd/Ctrl+Shift+P`) - it shows shortcuts next to commands
+3. **Print This Out**: Keep a printed copy near your workstation during the first week
+4. **Use Them Daily**: The only way shortcuts become muscle memory is through repetition
+5. **Customize if Needed**: If a shortcut conflicts with your OS or doesn't feel natural, remap it in VS Code settings
+
+---
+
+## Most Important "Must Know" Shortcuts
+
+If you're just starting out, memorize these first:
+
+### VS Code Top 5
+
+1. **Command Palette**: <KeyboardShortcut keys="Cmd+Shift+P" /> - Access everything
+2. **Quick Open**: <KeyboardShortcut keys="Cmd+P" /> - Fast file navigation
+3. **Toggle Terminal**: <KeyboardShortcut keys="Ctrl+`" /> - Quick access to command line
+4. **Go to Definition**: <KeyboardShortcut keys="F12" /> - Navigate code
+5. **Format Document**: <KeyboardShortcut keys="Shift+Alt+F" /> - Clean up code formatting
+
+### Terminal Top 3
+
+1. **Previous Command**: <KeyboardShortcut keys="Up" /> - Rerun commands
+2. **Search History**: <KeyboardShortcut keys="Ctrl+R" /> - Find past commands
+3. **Cancel Command**: <KeyboardShortcut keys="Ctrl+C" /> - Stop running processes
+
+### DevTools Top 3
+
+1. **Open DevTools**: <KeyboardShortcut keys="F12" /> or <KeyboardShortcut mac="Cmd+Alt+I" windows="Ctrl+Shift+I" linux="Ctrl+Shift+I" keys="Cmd+Alt+I" />
+2. **Inspect Element**: <KeyboardShortcut keys="Cmd+Shift+C" /> - Click to inspect
+3. **Console Tab**: <KeyboardShortcut mac="Cmd+Alt+J" windows="Ctrl+Shift+J" linux="Ctrl+Shift+J" keys="Cmd+Alt+J" /> - Direct access to console
+
+Master these fundamentals, and you'll be significantly more productive in your Angular development!

@@ -1,0 +1,155 @@
+---
+title: Introduction to Accessibility
+description: Build inclusive Angular applications with semantic HTML and accessibility best practices
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+
+<VideoPlaceholder title="Introduction to Web Accessibility" />
+
+Building accessible applications isn't just good practice - it's essential. Accessibility ensures that your applications can be used by everyone, including people with disabilities. It's also increasingly a legal requirement in many jurisdictions. The good news is that much of accessibility comes down to writing good, semantic HTML and following established patterns.
+
+## Why Accessibility is Important (Ethically)
+
+Accessibility is about inclusion and equal access.
+
+**Key Points:**
+- **1 in 4 adults** in the US has some form of disability
+- **Types of disabilities**:
+  - Visual: Blindness, low vision, color blindness
+  - Auditory: Deafness, hard of hearing
+  - Motor: Limited mobility, tremors, paralysis
+  - Cognitive: Learning disabilities, memory issues
+  - Situational: Broken arm, bright sunlight on screen, noisy environment
+
+**Ethical Arguments:**
+- Everyone deserves equal access to information and services
+- The web should be usable by all, regardless of ability
+- Exclusion causes harm - people miss opportunities, services, information
+- Many disabilities are temporary or situational
+
+**The Social Model:**
+- Disability isn't just medical
+- Society creates barriers
+- Inaccessible websites are one such barrier
+- We can remove barriers through thoughtful design
+
+**Why This Matters:**
+As developers, we have the power to include or exclude people. Choosing to build accessible applications is choosing to build a more inclusive web.
+
+**Further Reading:**
+- [Why Accessibility (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility#so_what_is_accessibility)
+- [WebAIM Introduction](https://webaim.org/intro/)
+
+## Why Accessibility is Important (Legally)
+
+Accessibility is legally required in many contexts.
+
+**Key Laws & Standards:**
+- **ADA (Americans with Disabilities Act)**: US law requiring accessible public accommodations, including websites
+- **Section 508**: US federal agencies must have accessible technology
+- **WCAG (Web Content Accessibility Guidelines)**: International standard for web accessibility
+  - Levels: A (minimum), AA (standard target), AAA (highest)
+- **European Accessibility Act**: EU requirement for accessible digital services
+- **AODA** (Canada), **Equality Act** (UK): Similar laws worldwide
+
+**Legal Risks:**
+- Lawsuits are increasing (thousands per year in US)
+- Settlements can be costly
+- Reputation damage
+- Loss of customers
+
+**Organizations Must Comply:**
+- Government agencies
+- Educational institutions
+- Financial institutions
+- Healthcare providers
+- Retailers and service providers
+- **Increasingly: All websites**
+
+**Why This Matters:**
+Companies hiring Angular developers expect accessible applications. Legal compliance is not optional. Understanding accessibility protects you and your employer.
+
+**Further Reading:**
+- [WCAG Overview](https://www.w3.org/WAI/standards-guidelines/wcag/)
+- [ADA and Websites](https://www.ada.gov/resources/web-guidance/)
+- [WebAIM Legal Issues](https://webaim.org/articles/laws/)
+
+## How Good Markup is Most of the Battle
+
+Semantic HTML provides most accessibility features automatically.
+
+**What Assistive Technology Needs:**
+- Structure: Headings, landmarks, lists
+- Meaning: What each element represents
+- State: Is it checked? Required? Expanded?
+- Relationships: Labels with inputs, groupings
+- Navigation: Keyboard access, focus order
+
+**Good Semantic HTML Provides This:**
+
+**Bad (Inaccessible):**
+```html
+<div onclick="submitForm()">Submit</div>
+<div class="checkbox"></div>
+<span class="heading">Page Title</span>
+```
+
+**Good (Accessible):**
+```html
+<button type="submit">Submit</button>
+<input type="checkbox" id="agree" name="agree">
+<h1>Page Title</h1>
+```
+
+**Why the Good Version Works:**
+- `<button>` is keyboard accessible, has proper role, announces as button
+- `<input type="checkbox">` announces state (checked/unchecked)
+- `<h1>` creates document structure for navigation
+
+**Key Practices:**
+1. **Use semantic elements**: `<button>`, `<nav>`, `<main>`, `<header>`, etc.
+2. **Add alt text to images**: `<img src="..." alt="Description">`
+3. **Label form inputs**:
+   ```html
+   <label for="email">Email:</label>
+   <input type="email" id="email" name="email">
+   ```
+4. **Use proper heading hierarchy**: `<h1>` → `<h2>` → `<h3>` (don't skip levels)
+5. **Ensure sufficient color contrast**: Text readable against background
+6. **Make interactive elements keyboard accessible**: Can tab to them, activate with Enter/Space
+
+**ARIA (When Semantic HTML Isn't Enough):**
+```html
+<!-- ARIA fills gaps for complex interactions -->
+<div role="dialog" aria-labelledby="dialog-title" aria-modal="true">
+  <h2 id="dialog-title">Confirm Action</h2>
+  ...
+</div>
+```
+
+**The Rule:** Use semantic HTML first. Add ARIA only when necessary. "No ARIA is better than bad ARIA."
+
+**Why This Matters:**
+Angular components should output semantic HTML. Understanding accessibility helps you create inclusive components. Most accessibility issues come from poor HTML, which is easily fixable.
+
+**Testing:**
+- Keyboard only navigation (no mouse)
+- Screen reader testing (NVDA, JAWS, VoiceOver)
+- Automated tools (axe DevTools, Lighthouse)
+
+**Further Reading:**
+- [Accessibility Basics (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+- [Semantic HTML for Accessibility](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML#good_semantics)
+- [ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
+- [WebAIM Checklist](https://webaim.org/standards/wcag/checklist)
+
+## Additional Resources
+
+- [MDN Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
+- [Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/)
+- [Angular Accessibility](https://angular.io/guide/accessibility)
+- [axe DevTools](https://www.deque.com/axe/devtools/) - Browser extension for testing
+
+<ReviewExercises />

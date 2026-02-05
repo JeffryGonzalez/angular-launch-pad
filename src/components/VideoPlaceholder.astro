@@ -1,0 +1,59 @@
+---
+interface Props {
+	title?: string;
+}
+
+const { title = "Introduction Video" } = Astro.props;
+---
+
+<div class="video-placeholder">
+	<div class="video-container">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="play-icon">
+			<circle cx="12" cy="12" r="10"></circle>
+			<polygon points="10 8 16 12 10 16 10 8"></polygon>
+		</svg>
+		<p class="video-title">{title}</p>
+		<p class="video-note">Video content coming soon</p>
+	</div>
+</div>
+
+<style>
+	.video-placeholder {
+		margin: 2rem 0;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	.video-container {
+		aspect-ratio: 16 / 9;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 2rem;
+		color: white;
+	}
+
+	.play-icon {
+		width: 4rem;
+		height: 4rem;
+		opacity: 0.9;
+	}
+
+	.video-title {
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin: 0;
+		text-align: center;
+	}
+
+	.video-note {
+		font-size: 0.875rem;
+		margin: 0;
+		opacity: 0.8;
+		font-style: italic;
+	}
+</style>

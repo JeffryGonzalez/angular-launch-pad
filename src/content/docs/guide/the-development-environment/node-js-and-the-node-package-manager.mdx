@@ -1,0 +1,322 @@
+---
+title: Node.js and the Node Package Manager (NPM)
+description: Understand how Node.js and npm power Angular development tools and dependency management
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+
+<VideoPlaceholder title="Introduction to Node.js and npm" />
+
+Node.js and npm are essential tools in the Angular ecosystem. While Angular applications run in the browser, the development tooling runs on Node.js. Understanding these tools will help you manage dependencies, run development servers, execute builds, and automate common tasks.
+
+Since we use Node.js and npm to manage our development-time experience with Angular - starting a development server, building (compiling) our application, running tests, and more - having a solid understanding of these tools is essential for a smooth development workflow.
+
+## What is Node.js and Why Do We Need It for Angular?
+
+Node.js is a JavaScript runtime that executes JavaScript outside the browser.
+
+**Key Points:**
+- **Runtime**: An environment that runs JavaScript code
+- Built on Chrome's V8 JavaScript engine
+- Lets JavaScript run on servers and developer machines
+- **For Angular**: Provides the platform for build tools, dev servers, and CLI
+- You're NOT building a Node.js server - you're using Node.js for tooling
+- Angular apps still run in the browser, not Node.js
+
+**What Node.js Does for Angular:**
+- Runs the Angular CLI (`ng` commands)
+- Powers the development server
+- Compiles TypeScript to JavaScript
+- Bundles your application
+- Runs automated tests
+
+**Why This Matters:**
+Without Node.js, you can't use Angular CLI or modern build tools. Think of Node.js as the engine that powers your development environment, even though your final app runs in the browser.
+
+**Further Reading:**
+- [About Node.js](https://nodejs.org/en/about/)
+- [Node.js for Frontend Developers](https://nodejs.dev/learn)
+
+## What is NPM (Node Package Manager)?
+
+NPM manages JavaScript packages and their dependencies.
+
+**Key Points:**
+- **Package Manager**: Tool for installing, updating, and managing libraries
+- Comes bundled with Node.js installation
+- **npm Registry**: Central repository of over 1 million packages
+- Think of it like an app store for JavaScript libraries
+- Commands: `npm install`, `npm update`, `npm uninstall`
+
+**What NPM Provides:**
+- Install Angular and its dependencies
+- Install development tools (TypeScript, testing libraries)
+- Run scripts defined in package.json
+- Manage package versions
+
+**Why This Matters:**
+NPM is how you'll install Angular, add UI libraries, include utilities, and manage all your project dependencies. Every Angular project relies heavily on npm.
+
+**Further Reading:**
+- [About npm](https://docs.npmjs.com/about-npm)
+- [npm CLI Documentation](https://docs.npmjs.com/cli/v9/commands/npm)
+
+## What is a Package?
+
+A package is a reusable bundle of code.
+
+**Key Points:**
+- **Package**: A directory with code and a `package.json` file
+- Packages provide functionality you can use in your projects
+- Examples: Angular framework, date formatting libraries, testing tools
+- Packages can depend on other packages
+- Published to npm registry for others to use
+
+**Types of Packages:**
+- **Libraries**: Provide functionality (Angular, RxJS, date-fns)
+- **Tools**: Development utilities (TypeScript, ESLint, testing frameworks)
+- **CLI Tools**: Command-line programs (Angular CLI, create-react-app)
+
+**Why This Matters:**
+Understanding packages helps you make good decisions about what to install. Each package is someone else's code you're trusting in your project. Quality and maintenance matter.
+
+**Further Reading:**
+- [About Packages and Modules](https://docs.npmjs.com/about-packages-and-modules)
+- [npm Registry](https://www.npmjs.com/)
+
+## Understanding package.json and package-lock.json
+
+These files define and lock your project dependencies.
+
+**package.json:**
+- **Purpose**: Project manifest - lists your project's dependencies and metadata
+- **Contains**:
+  - Project name and version
+  - Dependencies (packages your app needs)
+  - Scripts (commands you can run with `npm run`)
+  - Configuration for various tools
+
+**Example package.json:**
+```json
+{
+  "name": "my-angular-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test"
+  },
+  "dependencies": {
+    "@angular/core": "^17.0.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.2.2"
+  }
+}
+```
+
+**package-lock.json:**
+- **Purpose**: Locks exact versions of all dependencies and their dependencies
+- Ensures everyone on team installs identical versions
+- Auto-generated when you run `npm install`
+- Should be committed to Git
+
+**Why This Matters:**
+`package.json` is like a shopping list; `package-lock.json` ensures everyone buys from the same store with the same brands. This prevents "works on my machine" issues caused by version differences.
+
+**Further Reading:**
+- [package.json Guide](https://docs.npmjs.com/cli/v9/configuring-npm/package-json)
+- [package-lock.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-lock-json)
+
+## Installing Packages Locally vs. Globally
+
+Packages can be installed per-project or system-wide.
+
+**Local Installation (Default):**
+```bash
+npm install package-name
+```
+- Installs to current project's `node_modules` folder
+- Listed in project's `package.json`
+- Used for project dependencies
+- **Use this 99% of the time**
+
+**Global Installation:**
+```bash
+npm install -g package-name
+```
+- Installs to system-wide location
+- Available in all projects
+- Used for CLI tools you want everywhere
+- Example: `npm install -g @angular/cli`
+
+**Why This Matters:**
+Local installs keep projects independent - each project can use different versions. Global installs are for tools you want available everywhere, like the Angular CLI.
+
+**Further Reading:**
+- [Downloading and Installing Packages](https://docs.npmjs.com/downloading-and-installing-packages-locally)
+- [Global vs Local Installation](https://nodejs.dev/learn/npm-global-or-local-packages)
+
+## The Difference Between Runtime Dependencies vs. devDependencies
+
+Not all dependencies are needed in production.
+
+**dependencies:**
+- Required for your app to run
+- Included in production build
+- Example: Angular framework, RxJS
+- Install: `npm install package-name`
+
+**devDependencies:**
+- Only needed during development
+- NOT included in production build
+- Example: TypeScript compiler, testing tools, build tools
+- Install: `npm install --save-dev package-name`
+
+**Example:**
+```json
+{
+  "dependencies": {
+    "@angular/core": "^17.0.0",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "typescript": "~5.2.2",
+    "@angular/cli": "^17.0.0"
+  }
+}
+```
+
+**Why This Matters:**
+This distinction keeps production bundles smaller and clarifies what's essential for your app versus what's just for development. Understanding this helps when debugging dependency issues.
+
+**Further Reading:**
+- [Dependencies vs devDependencies](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file)
+
+## npm Scripts and How They Automate Tasks
+
+Scripts in package.json let you run commands with npm.
+
+**Key Points:**
+- Defined in `package.json` under `"scripts"`
+- Run with: `npm run script-name`
+- Common Angular scripts: `start`, `build`, `test`, `lint`
+- Can chain multiple commands
+
+**Example:**
+```json
+{
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "build:prod": "ng build --configuration=production"
+  }
+}
+```
+
+**Usage:**
+```bash
+npm start              # Short for: npm run start
+npm run build
+npm run build:prod
+```
+
+**Why This Matters:**
+Scripts provide consistent commands across projects and team members. Everyone runs `npm start` regardless of the underlying tooling. They also let you create complex workflows with simple commands.
+
+**Further Reading:**
+- [npm Scripts](https://docs.npmjs.com/cli/v9/using-npm/scripts)
+- [npm run Command](https://docs.npmjs.com/cli/v9/commands/npm-run-script)
+
+## Understanding the node_modules Folder
+
+Where installed packages live.
+
+**Key Points:**
+- Created by `npm install`
+- Contains all dependencies and their dependencies
+- Can be HUGE (thousands of folders, hundreds of megabytes)
+- Should NOT be committed to Git (add to `.gitignore`)
+- Can be regenerated anytime with `npm install`
+- Deleted to fix many dependency issues: `rm -rf node_modules && npm install`
+
+**Structure:**
+```
+node_modules/
+  ├── @angular/
+  │   ├── core/
+  │   ├── common/
+  │   └── ...
+  ├── rxjs/
+  ├── typescript/
+  └── ... (hundreds or thousands more)
+```
+
+**Why This Matters:**
+Understanding `node_modules` helps you troubleshoot. When dependencies seem broken, often deleting this folder and reinstalling fixes the issue. Also explains why you shouldn't commit it to Git.
+
+**Further Reading:**
+- [node_modules Basics](https://docs.npmjs.com/cli/v9/configuring-npm/folders#node-modules)
+
+## Semantic Versioning Basics
+
+Understanding version numbers and what ^ and ~ mean.
+
+**Version Format: Major.Minor.Patch**
+- Example: `17.2.5`
+- **Major** (17): Breaking changes - may require code updates
+- **Minor** (2): New features - backward compatible
+- **Patch** (5): Bug fixes - backward compatible
+
+**Version Specifiers:**
+- `17.2.5` - Exact version only
+- `^17.2.5` - Allow minor and patch updates (17.x.x, but not 18.0.0)
+- `~17.2.5` - Allow patch updates only (17.2.x)
+- `*` or `latest` - Any version (dangerous!)
+
+**Why This Matters:**
+The `^` symbol in package.json means "compatible with this version." Understanding this helps you know when updates might break your code. Major version changes often require migration work.
+
+**Further Reading:**
+- [Semantic Versioning](https://semver.org/)
+- [npm semver Calculator](https://semver.npmjs.com/)
+
+## npx and Running Packages Without Installing Them
+
+Run packages without permanent installation.
+
+**Key Points:**
+- `npx` comes with npm (v5.2+)
+- Runs a package without installing it globally
+- Downloads temporarily, executes, then discards
+- Great for one-time commands or trying packages
+
+**Common Uses:**
+```bash
+# Create new Angular app without installing CLI globally
+npx @angular/cli new my-app
+
+# Run a specific version
+npx -p @angular/cli@17 ng new my-app
+
+# Execute package binaries from node_modules
+npx ng serve
+```
+
+**Why This Matters:**
+`npx` lets you run tools without cluttering your global installation. It's also useful for ensuring you're running the project's locally-installed version of a tool rather than a global one.
+
+**Further Reading:**
+- [npx Documentation](https://docs.npmjs.com/cli/v9/commands/npx)
+- [Introducing npx](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner)
+
+## Additional Resources
+
+- [Node.js Official Docs](https://nodejs.org/en/docs/)
+- [npm Official Docs](https://docs.npmjs.com/)
+- [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+
+<ReviewExercises />

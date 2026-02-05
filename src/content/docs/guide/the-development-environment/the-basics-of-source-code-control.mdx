@@ -1,0 +1,237 @@
+---
+title: The Basics of Source Code Control
+description: Master Git fundamentals for collaborating on Angular projects and managing code changes
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+
+<VideoPlaceholder title="Introduction to Git and Version Control" />
+
+You should take the in-house Git source control training prior to this training. We will use Git and Github during the class. We will use an abbreviated, classroom-focused workflow in class, so some very basic understanding is enough. How to create commits, how to push your code, how to clone code from a repository, etc. We won't use complex branching workflows and will do our best to avoid any conflicts during merge, but these are all skills that are necessary for being a good Angular developer. Consider this your "starter set".
+
+## What is Version Control and Why Use It?
+
+Version control tracks changes to your code over time.
+
+**Key Points:**
+- Version control saves snapshots (commits) of your code at different points in time
+- You can revert to any previous version if something breaks
+- Provides a complete history of who changed what and why
+- Enables collaboration - multiple people can work on the same codebase
+- Acts as backup - your code is stored remotely (GitHub, GitLab, etc.)
+- Required for professional development - every company uses it
+
+**Why This Matters:**
+Without version control, you're working without a safety net. Git lets you experiment fearlessly, knowing you can always undo changes. It's also essential for collaborating with others and contributing to open source projects.
+
+**Further Reading:**
+- [About Version Control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
+- [Why Use Version Control?](https://www.git-tower.com/learn/git/ebook/en/command-line/basics/why-use-version-control)
+
+## Git Basics: Clone, Add, Commit, Push, Pull
+
+These five commands cover 90% of daily Git usage.
+
+**Key Commands:**
+- `git clone <url>` - Download a repository from GitHub to your computer
+- `git add <file>` or `git add .` - Stage changes for commit
+- `git commit -m "message"` - Save a snapshot with a descriptive message
+- `git push` - Upload your commits to the remote repository (GitHub)
+- `git pull` - Download latest changes from remote repository
+
+**Typical Workflow:**
+```bash
+# Start of day
+git pull
+
+# Make changes to files...
+
+# Stage and commit
+git add .
+git commit -m "Add user login feature"
+git push
+```
+
+**Why This Matters:**
+These five commands form your daily Git workflow in Angular development. You'll use them constantly to save your work, share it with teammates, and get updates from others.
+
+**Further Reading:**
+- [Git Basics](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository)
+- [GitHub Quick Start](https://docs.github.com/en/get-started/quickstart)
+
+## Understanding the Working Directory, Staging Area, and Repository
+
+Git has three main states for your files.
+
+**Key Points:**
+- **Working Directory**: Where you edit files - your actual project folder
+- **Staging Area** (Index): Files you've marked to include in the next commit
+- **Repository** (.git folder): The complete history of all commits
+
+**The Flow:**
+1. Edit files in working directory
+2. `git add` moves changes to staging area
+3. `git commit` saves staging area to repository
+4. `git push` uploads repository to remote (GitHub)
+
+**Check Status:**
+- `git status` - See what's changed, what's staged, what's not
+
+**Why This Matters:**
+Understanding these three areas helps you understand what Git is doing. When a tutorial says "stage your changes," you'll know it means `git add`. When you see "commit your changes," you'll know that's `git commit`.
+
+**Further Reading:**
+- [Git Basics - Recording Changes](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
+- [The Three States](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F#_the_three_states)
+
+## Viewing History and Diffs
+
+See what changed and when.
+
+**Key Commands:**
+- `git log` - View commit history
+  - `git log --oneline` - Condensed view
+  - `git log --graph --all` - Visual branch structure
+- `git diff` - See unstaged changes
+- `git diff --staged` - See staged changes
+- `git show <commit-hash>` - See details of a specific commit
+
+**Why This Matters:**
+When debugging, you often need to see what changed. "It was working yesterday" becomes actionable when you can view yesterday's code. Git history is your project's story.
+
+**Further Reading:**
+- [Viewing Commit History](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
+
+## .gitignore and Why Certain Files Shouldn't Be Tracked
+
+Not everything should be committed to Git.
+
+**Key Points:**
+- `.gitignore` file specifies files/folders Git should ignore
+- Common things to ignore:
+  - `node_modules/` - Dependencies (huge, can be reinstalled)
+  - Build output: `dist/`, `build/`
+  - Environment files with secrets: `.env`
+  - IDE files: `.vscode/`, `.idea/`
+  - OS files: `.DS_Store`, `Thumbs.db`
+
+**Angular-specific .gitignore:**
+```
+# dependencies
+/node_modules
+
+# build outputs
+/dist
+/tmp
+/out-tsc
+
+# IDEs
+/.vscode
+.idea/
+
+# misc
+/.angular/cache
+.DS_Store
+```
+
+**Why This Matters:**
+Ignoring `node_modules` keeps your repository small and fast - this folder can have thousands of files. Ignoring build outputs prevents conflicts. Ignoring secrets prevents accidentally exposing passwords or API keys publicly.
+
+**Further Reading:**
+- [Ignoring Files](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#_ignoring)
+- [gitignore Templates](https://github.com/github/gitignore)
+
+## What is GitHub/Remote Repositories
+
+GitHub hosts your Git repositories in the cloud.
+
+**Key Points:**
+- **Git**: The version control tool on your computer
+- **GitHub**: A website that hosts Git repositories online
+- GitHub provides: backup, collaboration, code review, project management
+- Alternatives exist: GitLab, Bitbucket, Azure DevOps
+- **Remote**: The version of your repository on GitHub
+- **Origin**: The default name for your primary remote
+
+**Common Commands:**
+- `git remote -v` - See your remote repositories
+- `git clone` - Copy a remote repository to your computer
+- `git push origin main` - Push to the main branch on origin remote
+
+**Why This Matters:**
+GitHub is where you'll collaborate with teams, contribute to open source, and showcase your work. Understanding the local (Git) vs remote (GitHub) distinction prevents confusion.
+
+**Further Reading:**
+- [About Remote Repositories](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes)
+- [GitHub Quickstart](https://docs.github.com/en/get-started/quickstart/hello-world)
+
+## Basic Branching Concepts
+
+Branches let you work on features without affecting the main codebase.
+
+**Key Points:**
+- **Branch**: An independent line of development
+- **main** (or master): The primary branch, usually the production code
+- Create branch: `git branch feature-name`
+- Switch branch: `git checkout feature-name` or `git switch feature-name`
+- Create and switch: `git checkout -b feature-name`
+- See branches: `git branch`
+
+**Simple Workflow:**
+```bash
+git checkout -b add-login-page
+# work on login page...
+git add .
+git commit -m "Add login page"
+git checkout main
+git merge add-login-page
+```
+
+**Why This Matters:**
+Branching lets you experiment without breaking working code. Even though we'll keep it simple in class, understanding branches is essential for professional development.
+
+**Further Reading:**
+- [Git Branching Basics](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+- [Using Branches](https://www.atlassian.com/git/tutorials/using-branches)
+
+## Handling Basic Merge Conflicts
+
+Sometimes Git can't automatically merge changes.
+
+**Key Points:**
+- **Conflict**: When two people edit the same lines and Git can't decide which to keep
+- Git marks conflicts in your files:
+  ```
+  <<<<<<< HEAD
+  Your changes
+  =======
+  Their changes
+  >>>>>>> branch-name
+  ```
+- To resolve:
+  1. Open the file
+  2. Choose which version to keep (or combine them)
+  3. Remove conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
+  4. `git add` the file
+  5. `git commit`
+
+**Avoiding Conflicts:**
+- Pull often: `git pull` before starting work
+- Communicate with team about who's working on what
+- Keep commits small and frequent
+
+**Why This Matters:**
+Conflicts are a normal part of collaboration. Knowing how to resolve them prevents panic when they occur. The process is straightforward once you understand the format.
+
+**Further Reading:**
+- [Basic Merge Conflicts](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merge_conflicts)
+- [Resolving Conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line)
+
+## Additional Resources
+
+- [Pro Git Book](https://git-scm.com/book/en/v2) - Free, comprehensive Git guide
+- [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+- [Interactive Git Tutorial](https://learngitbranching.js.org/)
+
+<ReviewExercises />

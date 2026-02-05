@@ -1,0 +1,366 @@
+---
+title: Cascading Style Sheets (CSS)
+description: Master CSS fundamentals including selectors, flexbox, grid, and modern styling approaches
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+
+<VideoPlaceholder title="Introduction to CSS" />
+
+CSS brings your applications to life visually. While you don't need to be a design expert, understanding CSS fundamentals is essential for creating usable and professional-looking Angular applications. CSS knowledge helps you implement designs, debug layout issues, and work effectively with UI libraries.
+
+## How to Include CSS in Your HTML Document
+
+There are three ways to add CSS to HTML.
+
+**1. External Stylesheet (Best Practice):**
+```html
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+```
+- Separate CSS file
+- Reusable across pages
+- Browser can cache it
+- **Use this for Angular components**
+
+**2. Internal Stylesheet:**
+```html
+<head>
+  <style>
+    h1 { color: blue; }
+  </style>
+</head>
+```
+- CSS in `<style>` tag within HTML
+- Only for that document
+
+**3. Inline Styles:**
+```html
+<h1 style="color: blue;">Title</h1>
+```
+- Directly on element
+- Highest specificity
+- Avoid except for dynamic styles
+
+**In Angular:**
+- Component styles in `@Component` decorator
+- Global styles in `styles.css`
+- CSS is scoped to components by default
+
+**Why This Matters:**
+Angular's component architecture encourages organizing CSS alongside components. Understanding different inclusion methods helps you decide where to put styles.
+
+**Further Reading:**
+- [How CSS Works (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works)
+- [How to Add CSS (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_is_structured)
+
+## Selectors
+
+Selectors target which HTML elements to style.
+
+**Basic Selectors:**
+```css
+/* Element selector */
+p { color: black; }
+
+/* Class selector */
+.highlight { background: yellow; }
+
+/* ID selector */
+#main-title { font-size: 2rem; }
+
+/* Universal selector */
+* { margin: 0; }
+```
+
+**Combinators:**
+```css
+/* Descendant (any level deep) */
+div p { color: blue; }
+
+/* Child (direct children only) */
+div > p { color: blue; }
+
+/* Adjacent sibling */
+h1 + p { margin-top: 0; }
+
+/* General sibling */
+h1 ~ p { color: gray; }
+```
+
+**Attribute Selectors:**
+```css
+[type="text"] { border: 1px solid gray; }
+[data-status="active"] { color: green; }
+```
+
+**Pseudo-classes:**
+```css
+a:hover { color: red; }
+input:focus { outline: 2px solid blue; }
+li:first-child { font-weight: bold; }
+```
+
+**Why This Matters:**
+Selectors are used heavily in Angular:
+- Styling components
+- Testing (selecting elements to test)
+- Angular directives use selectors
+Mastering selectors makes you effective at all three.
+
+**Further Reading:**
+- [CSS Selectors (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
+- [Selectors Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#selectors)
+
+## Basic CSS Properties
+
+Common properties you'll use frequently.
+
+**Typography:**
+```css
+font-family: Arial, sans-serif;
+font-size: 16px;
+font-weight: bold;
+line-height: 1.5;
+text-align: center;
+color: #333;
+```
+
+**Box Model:**
+```css
+width: 300px;
+height: 200px;
+margin: 10px;          /* Outside the element */
+padding: 15px;         /* Inside the element */
+border: 1px solid black;
+box-sizing: border-box; /* Include padding and border in width */
+```
+
+**Display & Positioning:**
+```css
+display: block | inline | inline-block | none;
+position: static | relative | absolute | fixed | sticky;
+top: 10px; left: 20px;
+z-index: 100;
+```
+
+**Colors & Backgrounds:**
+```css
+color: #333;           /* Text color */
+background-color: #f0f0f0;
+background-image: url('image.jpg');
+opacity: 0.8;
+```
+
+**Why This Matters:**
+These properties form the foundation of styling. You'll use them constantly in Angular components to implement designs.
+
+**Further Reading:**
+- [CSS Basics (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
+- [CSS Properties Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+
+## Basic Layout - Grid and Flexbox
+
+Modern CSS layout systems.
+
+**Flexbox (One-dimensional):**
+```css
+/* Container */
+.container {
+  display: flex;
+  justify-content: space-between; /* Horizontal alignment */
+  align-items: center;            /* Vertical alignment */
+  gap: 10px;                      /* Space between items */
+}
+
+/* Items */
+.item {
+  flex: 1;        /* Grow to fill space */
+  flex-shrink: 0; /* Don't shrink */
+}
+```
+
+**Use Flexbox For:**
+- Navigation bars
+- Centering content
+- Distributing items in a row/column
+
+**Grid (Two-dimensional):**
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Three columns */
+  grid-template-rows: auto 1fr auto;  /* Header, content, footer */
+  gap: 20px;
+}
+
+.item {
+  grid-column: span 2; /* Span 2 columns */
+}
+```
+
+**Use Grid For:**
+- Page layouts
+- Card grids
+- Complex multi-dimensional layouts
+
+**Why This Matters:**
+Flexbox and Grid make responsive layouts much easier than older techniques. Angular apps often use these for component layout. Understanding both helps you build responsive UIs.
+
+**Further Reading:**
+- [Flexbox (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox)
+- [Grid (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
+- [Flexbox Froggy](https://flexboxfroggy.com/) (Interactive game)
+- [Grid Garden](https://cssgridgarden.com/) (Interactive game)
+
+## Why Use a Library Like Tailwind?
+
+Utility-first CSS frameworks speed up development.
+
+**Traditional CSS:**
+```css
+/* styles.css */
+.button-primary {
+  background-color: blue;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+```
+```html
+<button class="button-primary">Click</button>
+```
+
+**Tailwind CSS:**
+```html
+<button class="bg-blue-500 text-white px-4 py-2 rounded">Click</button>
+```
+
+**Benefits:**
+- Write styles directly in HTML
+- No naming classes
+- Consistent design system
+- Small production builds (unused styles removed)
+- Fast prototyping
+
+**Trade-offs:**
+- HTML can look cluttered
+- Learning curve for utility class names
+- Less separation of concerns
+
+**Why This Matters:**
+Many Angular projects use Tailwind or similar utilities. Understanding the approach helps you work with these codebases and decide if it's right for your projects.
+
+**Further Reading:**
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Utility-First CSS](https://tailwindcss.com/docs/utility-first)
+
+## Tailwind vs Angular Material (UI Libraries)
+
+Understanding the difference between utility CSS and component libraries.
+
+**Tailwind (Utility CSS):**
+- Low-level utility classes
+- You build components from scratch
+- Complete design freedom
+- More initial work
+- Example: `class="flex items-center justify-between"`
+
+**Angular Material (Component Library):**
+- Pre-built, ready-to-use components
+- Buttons, dialogs, tables, etc. already styled
+- Implements Material Design
+- Less flexibility, faster development
+- Example: `<mat-button>`
+
+**Comparison:**
+| Aspect | Tailwind | Angular Material |
+|--------|----------|------------------|
+| Level | CSS utilities | Complete components |
+| Setup | More initial work | Quick start |
+| Customization | Complete freedom | Themed within constraints |
+| Consistency | You control | Built-in design system |
+| Learning Curve | Learn class names | Learn component APIs |
+
+**Can Use Both:**
+Many projects use Angular Material for complex components (data tables, dialogs) and Tailwind for custom layouts and styling.
+
+**Why This Matters:**
+Choosing the right tool depends on your project needs. Understanding both approaches helps you make informed decisions.
+
+**Further Reading:**
+- [Angular Material](https://material.angular.io/)
+- [Tailwind with Angular](https://tailwindcss.com/docs/guides/angular)
+
+## Tips for Structuring HTML to Make Styling Easier
+
+Good HTML structure makes CSS simpler.
+
+**1. Use Semantic HTML:**
+```html
+<!-- Good -->
+<nav class="main-nav">
+  <ul class="nav-list">...</ul>
+</nav>
+
+<!-- Bad - harder to style -->
+<div class="nav">
+  <div class="list">...</div>
+</div>
+```
+
+**2. Add Wrapper Elements When Needed:**
+```html
+<div class="card">
+  <div class="card-header">Title</div>
+  <div class="card-body">Content</div>
+</div>
+```
+
+**3. Use Meaningful Class Names:**
+```html
+<!-- Good -->
+<button class="btn-primary">Submit</button>
+
+<!-- Bad -->
+<button class="blue-big">Submit</button>
+```
+
+**4. Group Related Elements:**
+```html
+<div class="user-profile">
+  <img class="user-avatar" src="...">
+  <h2 class="user-name">John Doe</h2>
+  <p class="user-bio">...</p>
+</div>
+```
+
+**5. Avoid Deep Nesting:**
+```html
+<!-- Bad - too deep -->
+<div>
+  <div>
+    <div>
+      <div>
+        <p>Content</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Why This Matters:**
+In Angular, components encourage good structure. Clean HTML makes styling easier, improves maintainability, and helps other developers understand your code.
+
+**Further Reading:**
+- [HTML Best Practices](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure#planning_a_simple_website)
+
+## Additional Resources
+
+- [MDN CSS Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [CSS Tricks](https://css-tricks.com/)
+- [Learn CSS (MDN)](https://developer.mozilla.org/en-US/docs/Learn/CSS)
+
+<ReviewExercises />

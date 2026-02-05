@@ -1,0 +1,164 @@
+---
+interface Props {
+	keys: string;
+	mac?: string;
+	windows?: string;
+	linux?: string;
+}
+
+const { keys, mac, windows, linux } = Astro.props;
+
+// Map common key names to their symbols
+const keySymbols: Record<string, { mac: string; other: string }> = {
+	'cmd': { mac: '⌘', other: 'Ctrl' },
+	'command': { mac: '⌘', other: 'Ctrl' },
+	'ctrl': { mac: '⌃', other: 'Ctrl' },
+	'control': { mac: '⌃', other: 'Ctrl' },
+	'alt': { mac: '⌥', other: 'Alt' },
+	'option': { mac: '⌥', other: 'Alt' },
+	'shift': { mac: '⇧', other: 'Shift' },
+	'enter': { mac: '↵', other: 'Enter' },
+	'return': { mac: '↵', other: 'Enter' },
+	'delete': { mac: '⌫', other: 'Del' },
+	'backspace': { mac: '⌫', other: 'Backspace' },
+	'tab': { mac: '⇥', other: 'Tab' },
+	'esc': { mac: '⎋', other: 'Esc' },
+	'escape': { mac: '⎋', other: 'Esc' },
+	'up': { mac: '↑', other: '↑' },
+	'down': { mac: '↓', other: '↓' },
+	'left': { mac: '←', other: '←' },
+	'right': { mac: '→', other: '→' },
+};
+
+function formatKeys(keyString: string, platform: 'mac' | 'other'): string[] {
+	return keyString
+		.split('+')
+		.map(key => key.trim().toLowerCase())
+		.map(key => {
+			const symbol = keySymbols[key];
+			if (symbol) {
+				return platform === 'mac' ? symbol.mac : symbol.other;
+			}
+			// If not a special key, capitalize the first letter
+			return key.charAt(0).toUpperCase() + key.slice(1);
+		});
+}
+
+const primaryKeys = formatKeys(keys, 'mac');
+const macKeys = mac ? formatKeys(mac, 'mac') : primaryKeys;
+const windowsKeys = windows ? formatKeys(windows, 'other') : formatKeys(keys, 'other');
+const linuxKeys = linux ? formatKeys(linux, 'other') : formatKeys(keys, 'other');
+---
+
+<span class="keyboard-shortcut">
+	<span class="shortcut-keys" data-platform="mac">
+		{macKeys.map((key, index) => (
+			<>
+				<kbd>{key}</kbd>
+				{index < macKeys.length - 1 && <span class="separator">+</span>}
+			</>
+		))}
+	</span>
+	<span class="shortcut-keys" data-platform="windows">
+		{windowsKeys.map((key, index) => (
+			<>
+				<kbd>{key}</kbd>
+				{index < windowsKeys.length - 1 && <span class="separator">+</span>}
+			</>
+		))}
+	</span>
+	<span class="shortcut-keys" data-platform="linux">
+		{linuxKeys.map((key, index) => (
+			<>
+				<kbd>{key}</kbd>
+				{index < linuxKeys.length - 1 && <span class="separator">+</span>}
+			</>
+		))}
+	</span>
+</span>
+
+<style>
+	.keyboard-shortcut {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.25rem;
+		white-space: nowrap;
+	}
+
+	.shortcut-keys {
+		display: none;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	/* Show Mac shortcuts by default, or detect based on user agent */
+	.shortcut-keys[data-platform="mac"] {
+		display: inline-flex;
+	}
+
+	kbd {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 1.5rem;
+		padding: 0.125rem 0.5rem;
+		font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+		font-size: 0.875em;
+		font-weight: 600;
+		line-height: 1.4;
+		color: var(--sl-color-text);
+		background-color: var(--sl-color-gray-6);
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.25rem;
+		box-shadow: 0 1px 0 0 var(--sl-color-gray-5),
+					0 1px 2px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.separator {
+		color: var(--sl-color-gray-3);
+		font-size: 0.75em;
+		margin: 0 0.125rem;
+	}
+
+	/* Client-side platform detection */
+	@media (prefers-color-scheme: dark) {
+		kbd {
+			background-color: var(--sl-color-gray-5);
+			border-color: var(--sl-color-gray-4);
+			box-shadow: 0 1px 0 0 var(--sl-color-gray-4),
+						0 1px 2px 0 rgba(0, 0, 0, 0.3);
+		}
+	}
+</style>
+
+<script>
+	// Detect platform and show appropriate shortcuts
+	function updateShortcuts() {
+		const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+		const isWindows = navigator.platform.toUpperCase().indexOf('WIN') >= 0;
+		
+		const platform = isMac ? 'mac' : isWindows ? 'windows' : 'linux';
+		
+		document.querySelectorAll('.keyboard-shortcut').forEach(shortcut => {
+			const keys = shortcut.querySelectorAll('.shortcut-keys');
+			keys.forEach(key => {
+				const keyPlatform = key.getAttribute('data-platform');
+				if (keyPlatform === platform) {
+					(key as HTMLElement).style.display = 'inline-flex';
+				} else {
+					(key as HTMLElement).style.display = 'none';
+				}
+			});
+		});
+	}
+
+	// Run on page load
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', updateShortcuts);
+	} else {
+		updateShortcuts();
+	}
+
+	// Re-run on navigation in Astro (for view transitions)
+	document.addEventListener('astro:page-load', updateShortcuts);
+</script>

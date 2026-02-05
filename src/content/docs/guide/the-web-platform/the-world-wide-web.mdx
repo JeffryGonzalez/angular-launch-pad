@@ -1,0 +1,400 @@
+---
+title: The World Wide Web
+description: Understand how the web works, from HTTP requests to RESTful APIs and JSON
+---
+
+import VideoPlaceholder from '../../../../components/VideoPlaceholder.astro';
+import ReviewExercises from '../../../../components/ReviewExercises.astro';
+
+<VideoPlaceholder title="Introduction to the World Wide Web" />
+
+The World Wide Web is the foundation upon which we build modern web applications. Understanding its history, architecture, and core protocols will help you make better decisions as a developer and troubleshoot issues more effectively.
+
+## Origins (Tim Berners-Lee, etc.)
+
+Understanding where the web came from provides context for how it works today.
+
+**Key Points:**
+- **1989**: Tim Berners-Lee invented the World Wide Web at CERN
+- Original purpose: Share documents between scientists
+- Key innovations:
+  - HTML for document structure
+  - HTTP for transferring documents
+  - URLs for addressing documents
+  - The first web browser and server
+- **1991**: Web made publicly available
+- **Mid-1990s**: Netscape, Internet Explorer, browser wars began
+- **Today**: The web has evolved from documents to full applications
+
+**Why This Matters:**
+Many web concepts (URLs, links, documents) come from its origins as a document-sharing system. Understanding this explains why certain patterns exist and helps you grasp the web's architecture.
+
+**Further Reading:**
+- [History of the Web (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards#a_brief_history_of_the_web)
+- [Tim Berners-Lee's Proposal](https://www.w3.org/History/1989/proposal.html)
+
+## How the WWW Relates to the Internet
+
+The web and the internet are not the same thing.
+
+**Key Points:**
+- **Internet**: Global network of interconnected computers (the infrastructure)
+- **World Wide Web (WWW)**: A service that runs on the internet
+- Other internet services: email, file transfer (FTP), video streaming
+- **Analogy**: Internet is like the road system; the web is like the cars that use it
+- The web uses HTTP/HTTPS protocol on top of internet infrastructure
+
+**Why This Matters:**
+Understanding this distinction helps you grasp network issues. Problems can happen at different layers - internet connectivity vs. web server issues. This knowledge aids troubleshooting.
+
+**Further Reading:**
+- [How Does the Internet Work (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
+- [Internet vs Web](https://www.cloudflare.com/learning/network-layer/what-is-the-internet/)
+
+## What is a "Web Server"
+
+A web server delivers web content to clients.
+
+**Key Points:**
+- **Software** that responds to HTTP requests and sends HTML, CSS, JavaScript, images, etc.
+- **Hardware** (computer) that runs web server software
+- Popular web servers: Nginx, Apache, IIS, Node.js/Express
+- **For Angular**: Development server (`ng serve`) during development; production server (Nginx, Apache) for deployed apps
+- Listens on a port (usually 80 for HTTP, 443 for HTTPS)
+
+**How It Works:**
+1. Browser requests: `http://example.com/index.html`
+2. Web server receives request
+3. Server finds or generates the content
+4. Server sends content back to browser
+5. Browser displays content
+
+**Why This Matters:**
+Understanding web servers helps you deploy Angular applications and troubleshoot hosting issues. Angular apps are "static" files served by web servers, unlike server-rendered apps.
+
+**Further Reading:**
+- [What is a Web Server (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server)
+
+## What is a "Web Browser"
+
+A web browser requests, receives, and renders web content.
+
+**Key Points:**
+- Software that displays web pages (Chrome, Firefox, Safari, Edge)
+- **Main functions**:
+  - Send HTTP requests to web servers
+  - Receive HTML, CSS, JavaScript, images, etc.
+  - Parse and render the content
+  - Execute JavaScript
+  - Handle user interaction
+- **Components**: UI, rendering engine, JavaScript engine, networking, storage
+- Different browsers have different capabilities and quirks
+
+**Why This Matters:**
+Your Angular app runs in browsers. Understanding browser capabilities and differences helps you write compatible code, debug issues, and optimize performance. Browser developer tools are essential for development.
+
+**Further Reading:**
+- [How Browsers Work](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work)
+- [Browser Engines](https://developer.mozilla.org/en-US/docs/Glossary/Engine/Browser)
+
+## Very Basics of HTTP as an Application Layer Protocol
+
+HTTP is the protocol browsers use to communicate with servers.
+
+**Key Points:**
+- **HTTP**: HyperText Transfer Protocol
+- **Request/Response**: Client asks, server answers
+- **Stateless**: Each request is independent (no memory between requests)
+- **Request includes**: Method (GET, POST, etc.), URL, headers, optional body
+- **Response includes**: Status code, headers, body (content)
+
+**Common HTTP Methods:**
+- **GET**: Retrieve data (read)
+- **POST**: Send data to server (create)
+- **PUT**: Update data
+- **DELETE**: Remove data
+
+**Example HTTP Request:**
+```
+GET /api/users HTTP/1.1
+Host: example.com
+Accept: application/json
+```
+
+**Response:**
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"users": [...]}
+```
+
+**Why This Matters:**
+Angular apps communicate with backend APIs using HTTP. Understanding requests/responses helps you debug network issues, work with APIs, and understand how your app gets data.
+
+**Further Reading:**
+- [HTTP Overview (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+- [HTTP Messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages)
+
+## Difference Between HTTP and HTTPS
+
+HTTPS is secure HTTP.
+
+**Key Points:**
+- **HTTP**: Plain text - anyone can read the data
+- **HTTPS**: Encrypted - data is secure during transfer
+- HTTPS = HTTP + TLS/SSL (encryption layer)
+- **Padlock icon** in browser indicates HTTPS
+- HTTPS requires SSL certificate on server
+- **Modern standard**: All websites should use HTTPS
+
+**What HTTPS Protects:**
+- Login credentials
+- Personal information
+- Payment data
+- Prevents tampering with content in transit
+
+**Why This Matters:**
+Modern web security requires HTTPS. Browsers warn users about HTTP sites. Many features (geolocation, service workers) only work with HTTPS. Production Angular apps must use HTTPS.
+
+**Further Reading:**
+- [What is HTTPS (MDN)](https://developer.mozilla.org/en-US/docs/Glossary/https)
+- [Why HTTPS Matters](https://developers.google.com/web/fundamentals/security/encrypt-in-transit/why-https)
+
+## Quick Overview of TCP and How It Relates to the WWW
+
+TCP provides reliable data transfer for HTTP.
+
+**Key Points:**
+- **TCP**: Transmission Control Protocol
+- **Purpose**: Ensures data packets arrive reliably and in order
+- HTTP runs "on top of" TCP
+- **TCP provides**:
+  - Connection establishment (handshake)
+  - Reliable delivery (resends lost packets)
+  - Ordered delivery (packets arrive in sequence)
+- **Layer model**: Application (HTTP) → Transport (TCP) → Internet (IP)
+
+**Why This Matters:**
+Understanding that HTTP relies on TCP helps explain network behavior. Connection timeouts, slow networks, and packet loss all happen at the TCP level, affecting HTTP performance.
+
+**Further Reading:**
+- [TCP/IP Model](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#http_and_tcp)
+
+## Web Standards - HTML, CSS, HTTP, etc.
+
+Standards ensure consistency across browsers and servers.
+
+**Key Points:**
+- **Standards bodies**:
+  - W3C (World Wide Web Consortium) - HTML, CSS
+  - WHATWG (Web Hypertext Application Technology Working Group) - HTML Living Standard
+  - IETF (Internet Engineering Task Force) - HTTP, TCP
+  - TC39 - JavaScript/ECMAScript
+- **Open standards**: Anyone can implement them
+- **Why standards matter**: Interoperability between browsers, servers, tools
+
+**Key Web Standards:**
+- HTML - Document structure
+- CSS - Styling and layout
+- JavaScript - Behavior and interactivity
+- HTTP - Communication protocol
+- DOM - Document manipulation API
+
+**Why This Matters:**
+Web standards allow your Angular app to work across different browsers and platforms. Understanding standards helps you write portable, future-proof code.
+
+**Further Reading:**
+- [Web Standards (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/The_web_and_web_standards)
+- [W3C Standards](https://www.w3.org/standards/)
+
+## How Web Standards Are Supported by Browsers
+
+Not all browsers support all features equally.
+
+**Key Points:**
+- Browsers implement standards at different speeds
+- **Feature support varies**:
+  - Modern browsers (Chrome, Firefox, Edge, Safari) have good support
+  - Older browsers lag behind
+  - Mobile browsers may differ from desktop
+- **Check compatibility**: Use resources like "Can I Use"
+- **Polyfills**: JavaScript code that adds missing features
+- **Transpilation**: Convert modern code to older syntax (TypeScript → JavaScript)
+
+**For Angular Developers:**
+- Angular CLI handles most compatibility issues
+- Targets specific browser versions in `browserslist`
+- Automatically includes polyfills when needed
+
+**Why This Matters:**
+Not every user has the latest browser. Understanding compatibility helps you make informed decisions about which features to use and how to support older browsers.
+
+**Further Reading:**
+- [Browser Compatibility (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Introduction)
+- [Can I Use](https://caniuse.com/)
+
+## Web Sockets, Server Sent Events Overview
+
+Real-time communication alternatives to traditional HTTP.
+
+**WebSockets:**
+- **Bidirectional** real-time communication
+- Persistent connection between client and server
+- Both can send messages anytime
+- **Use cases**: Chat applications, live feeds, multiplayer games
+- Example: Server pushes stock prices; client sends messages
+
+**Server-Sent Events (SSE):**
+- **One-way** communication from server to client
+- Server pushes updates to browser
+- Simpler than WebSockets
+- **Use cases**: Live news feeds, notifications, progress updates
+
+**Why This Matters:**
+Some Angular applications need real-time features. Understanding when to use WebSockets vs SSE vs polling helps you choose the right approach for real-time data.
+
+**Further Reading:**
+- [WebSockets (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [Server-Sent Events (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
+
+## DNS and IP Addresses
+
+How domain names map to server addresses.
+
+**Key Points:**
+- **IP Address**: Numerical address of a computer (e.g., `172.67.177.42`)
+- **Domain Name**: Human-readable address (e.g., `example.com`)
+- **DNS** (Domain Name System): Translates domain names to IP addresses
+- **DNS Lookup Process**:
+  1. Type `example.com` in browser
+  2. Browser asks DNS server for IP address
+  3. DNS returns IP address
+  4. Browser connects to that IP address
+
+**Why This Matters:**
+Understanding DNS helps troubleshoot connection issues. Sometimes DNS problems appear as "site not found" errors. DNS changes take time to propagate when deploying apps.
+
+**Further Reading:**
+- [DNS Basics (MDN)](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name)
+- [How DNS Works](https://www.cloudflare.com/learning/dns/what-is-dns/)
+
+## RESTful APIs Basics
+
+REST is a common pattern for web APIs that Angular apps consume.
+
+**Key Points:**
+- **REST**: Representational State Transfer
+- **API**: Application Programming Interface (how software talks to software)
+- **RESTful principles**:
+  - Resources identified by URLs (`/api/users`, `/api/users/123`)
+  - Use HTTP methods meaningfully (GET to read, POST to create, etc.)
+  - Stateless requests
+  - Responses typically in JSON format
+
+**Example REST API:**
+- `GET /api/users` - List all users
+- `GET /api/users/123` - Get user 123
+- `POST /api/users` - Create new user
+- `PUT /api/users/123` - Update user 123
+- `DELETE /api/users/123` - Delete user 123
+
+**Why This Matters:**
+Most Angular apps get data from REST APIs. Understanding REST conventions helps you work with backend APIs and design your own API interactions properly.
+
+**Further Reading:**
+- [RESTful APIs](https://developer.mozilla.org/en-US/docs/Glossary/REST)
+- [HTTP Request Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+
+## JSON as a Data Format
+
+JSON is the standard format for exchanging data on the web.
+
+**Key Points:**
+- **JSON**: JavaScript Object Notation
+- Text-based, human-readable data format
+- **Data types**: Objects, arrays, strings, numbers, booleans, null
+- Language-independent (despite JavaScript in the name)
+- Replaced XML as the primary format for web APIs
+
+**Example JSON:**
+```json
+{
+  "name": "John Doe",
+  "age": 30,
+  "email": "john@example.com",
+  "roles": ["user", "admin"]
+}
+```
+
+**In Angular:**
+- API responses are usually JSON
+- Angular's `HttpClient` automatically parses JSON
+- Easy to work with in TypeScript
+
+**Why This Matters:**
+JSON is everywhere in modern web development. Understanding its structure helps you work with API responses, debug network issues, and structure your data properly.
+
+**Further Reading:**
+- [Working with JSON (MDN)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON)
+- [JSON.org](https://www.json.org/)
+
+## Request/Response Cycle
+
+Understanding the full lifecycle of a web request.
+
+**The Cycle:**
+1. **User Action**: Click link, submit form, app makes API call
+2. **Browser Creates Request**: GET /api/data with headers
+3. **DNS Lookup**: Convert domain to IP address
+4. **TCP Connection**: Establish connection to server
+5. **Send Request**: Browser sends HTTP request
+6. **Server Processing**: Server handles request, queries database, etc.
+7. **Server Response**: Sends back status code, headers, data
+8. **Browser Receives**: Parses response
+9. **Render/Process**: Display content or update app with data
+
+**Why This Matters:**
+Understanding this cycle helps you debug "slow" applications - you can identify which step is causing delays. It also helps you understand async operations in Angular.
+
+**Further Reading:**
+- [HTTP Messages (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages)
+
+## Common HTTP Status Codes
+
+Status codes tell you the result of an HTTP request.
+
+**Success (2xx):**
+- **200 OK**: Request succeeded
+- **201 Created**: Resource created successfully
+- **204 No Content**: Success, but no data to return
+
+**Redirection (3xx):**
+- **301 Moved Permanently**: Resource moved to new URL
+- **304 Not Modified**: Cached version is still valid
+
+**Client Errors (4xx):**
+- **400 Bad Request**: Malformed request
+- **401 Unauthorized**: Authentication required
+- **403 Forbidden**: No permission to access
+- **404 Not Found**: Resource doesn't exist
+
+**Server Errors (5xx):**
+- **500 Internal Server Error**: Server crashed or error occurred
+- **502 Bad Gateway**: Server acting as proxy received invalid response
+- **503 Service Unavailable**: Server overloaded or down
+
+**Why This Matters:**
+Status codes help you handle errors properly in Angular. You'll write different logic for 404 (show "not found" message) vs 500 (show "server error" message) vs 401 (redirect to login).
+
+**Further Reading:**
+- [HTTP Status Codes (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+- [HTTP Cats](https://http.cat/) (Fun way to learn status codes)
+
+## Additional Resources
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web) - Comprehensive web platform documentation
+- [How the Web Works](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works)
+- [HTTP Basics](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP)
+
+<ReviewExercises />

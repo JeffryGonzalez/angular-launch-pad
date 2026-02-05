@@ -1,0 +1,84 @@
+---
+interface Props {
+	title?: string;
+}
+
+const { title = "Review & Practice" } = Astro.props;
+---
+
+<div class="review-exercises">
+	<div class="review-header">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="review-icon">
+			<path d="M9 11l3 3L22 4"></path>
+			<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+		</svg>
+		<h2>{title}</h2>
+	</div>
+	<div class="review-content">
+		<div class="placeholder-section">
+			<h3>📝 Review Questions</h3>
+			<p>Interactive review questions will be added here to help reinforce key concepts.</p>
+		</div>
+		<div class="placeholder-section">
+			<h3>💻 Practice Exercises</h3>
+			<p>Hands-on coding exercises will be available here to apply what you've learned.</p>
+		</div>
+	</div>
+</div>
+
+<style>
+	.review-exercises {
+		margin: 3rem 0 2rem;
+		border: 2px solid #e0e0e0;
+		border-radius: 0.75rem;
+		overflow: hidden;
+		background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+	}
+
+	.review-header {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1.25rem 1.5rem;
+		background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+		color: white;
+	}
+
+	.review-icon {
+		width: 1.75rem;
+		height: 1.75rem;
+		flex-shrink: 0;
+	}
+
+	.review-header h2 {
+		margin: 0;
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+
+	.review-content {
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.placeholder-section {
+		padding: 1.25rem;
+		border: 2px dashed #cbd5e0;
+		border-radius: 0.5rem;
+		background: white;
+	}
+
+	.placeholder-section h3 {
+		margin: 0 0 0.75rem 0;
+		font-size: 1.125rem;
+		color: #2d3748;
+	}
+
+	.placeholder-section p {
+		margin: 0;
+		color: #718096;
+		font-size: 0.95rem;
+	}
+</style>
