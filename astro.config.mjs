@@ -8,7 +8,7 @@ export default defineConfig({
 		starlight({
 			title: 'Angular Launch Pad',
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/JeffryGonzalez/angular-100-pre-work' }
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/JeffryGonzalez/angular-launch-pad' }
 			],
 			sidebar: [
 				{
