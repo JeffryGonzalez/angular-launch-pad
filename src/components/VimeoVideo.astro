@@ -1,0 +1,112 @@
+---
+interface Props {
+	url: string;
+	title: string;
+	description?: string;
+}
+
+const { url, title, description } = Astro.props;
+
+// Parse Vimeo URL to extract video ID and optional privacy hash
+function parseVimeoUrl(vimeoUrl: string): { videoId: string; hash?: string } {
+	// Remove query parameters
+	const cleanUrl = vimeoUrl.split('?')[0];
+	
+	// Extract video ID and hash from URL
+	// Format: https://vimeo.com/VIDEO_ID or https://vimeo.com/VIDEO_ID/HASH
+	const match = cleanUrl.match(/vimeo\.com\/(\d+)(?:\/([a-f0-9]+))?/);
+	
+	if (!match) {
+		throw new Error(`Invalid Vimeo URL: ${vimeoUrl}`);
+	}
+	
+	return {
+		videoId: match[1],
+		hash: match[2]
+	};
+}
+
+const { videoId, hash } = parseVimeoUrl(url);
+const embedUrl = hash 
+	? `https://player.vimeo.com/video/${videoId}?h=${hash}`
+	: `https://player.vimeo.com/video/${videoId}`;
+---
+
+<div class="vimeo-video">
+	{(title || description) && (
+		<div class="video-header">
+			{title && <h3 class="video-title">{title}</h3>}
+			{description && <p class="video-description">{description}</p>}
+		</div>
+	)}
+	<div class="video-container">
+		<iframe
+			src={embedUrl}
+			frameborder="0"
+			allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+			title={title}
+			class="video-iframe"
+		></iframe>
+	</div>
+</div>
+
+<style>
+	.vimeo-video {
+		margin: 2rem 0;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		background: var(--sl-color-gray-6);
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	.video-header {
+		padding: 1.5rem 1.5rem 1rem;
+		background: var(--sl-color-gray-6);
+		border-bottom: 1px solid var(--sl-color-gray-5);
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.video-title {
+		margin: 0;
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: var(--sl-color-text);
+	}
+
+	.video-description {
+		margin: 0;
+		font-size: 0.9375rem;
+		color: var(--sl-color-gray-2);
+		line-height: 1.6;
+	}
+
+	.video-container {
+		position: relative;
+		padding-bottom: 56.25%; /* 16:9 aspect ratio */
+		height: 0;
+		overflow: hidden;
+		background: #000;
+	}
+
+	.video-iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: none;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.vimeo-video {
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	:root[data-theme='dark'] .vimeo-video {
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+	}
+</style>
